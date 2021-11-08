@@ -1,4 +1,5 @@
 <<<<<<< Upstream, based on origin/main
+<<<<<<< Upstream, based on origin/main
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
@@ -69,3 +70,111 @@
    </children>
 </AnchorPane>
 >>>>>>> 73d3a23 Merge from Surface.
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ConversionController">
+   <children>
+      <BorderPane prefHeight="800.0" prefWidth="800.0">
+         <top>
+            <Label fx:id="lblCalcType" text="Conversion Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="30.0" />
+               </font>
+               <padding>
+                  <Insets top="25.0" />
+               </padding>
+            </Label>
+         </top>
+         <bottom>
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" text="Back" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="25.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font name="Lucida Sans Unicode" size="15.0" />
+               </font>
+            </Button>
+         </bottom>
+         <center>
+            <GridPane fx:id="grdLayout" maxHeight="400.0" maxWidth="600.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" text="=" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="41.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtConvertFrom" text="Convert From">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </TextField>
+                        <TextField fx:id="txtConvertTo" layoutX="10.0" layoutY="55.0" text="Convert To" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </TextField>
+                        <ComboBox fx:id="ddConvertFrom" prefWidth="200.0" promptText="Unit To Convert From" GridPane.rowIndex="1">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ComboBox>
+                        <ComboBox fx:id="ddConvertTo" layoutX="10.0" layoutY="94.0" prefWidth="200.0" promptText="Unit To Convert To" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ComboBox>
+                     </children>
+                  </GridPane>
+                  <ComboBox fx:id="ddConversionType" prefWidth="350.0" promptText="Select Conversion Type">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ComboBox>
+                  <Button mnemonicParsing="false" text="Calculate" textAlignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </GridPane>
+         </center></BorderPane>
+   </children>
+</AnchorPane>
+>>>>>>> 7adae3f Completed basic design for Conversion Calculator view.

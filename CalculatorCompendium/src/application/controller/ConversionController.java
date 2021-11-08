@@ -13,12 +13,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ConversionController {
 	
 	@FXML
     private Button btnBack;
+	
+	@FXML
+    private ComboBox<?> ddConvertTo;
+
+    @FXML
+    private ComboBox<?> ddConversionType;
+
+    @FXML
+    private ComboBox<?> ddConvertFrom;
+   
+    @FXML
+    private TextField txtConvertFrom;
+
+    @FXML
+    private TextField txtConvertTo;
+
 
     @FXML
     void handleBack(ActionEvent event) {    	
