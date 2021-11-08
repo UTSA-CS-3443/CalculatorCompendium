@@ -1,3 +1,4 @@
+<<<<<<< Upstream, based on origin/main
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
@@ -34,3 +35,41 @@
    </children>
 </AnchorPane>
 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.controller.TaxController">
+ <children>
+      <BorderPane prefHeight="800.0" prefWidth="800.0">
+         <top>
+            <Label fx:id="lblCalcType" text="Tax Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="30.0" />
+               </font>
+               <padding>
+                  <Insets top="25.0" />
+               </padding>
+            </Label>
+         </top>
+         <bottom>
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" text="Back" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="25.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font name="Lucida Sans Unicode" size="15.0" />
+               </font>
+            </Button>
+         </bottom></BorderPane>
+   </children>
+</AnchorPane>
+
+>>>>>>> 73d3a23 Merge from Surface.
