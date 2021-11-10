@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class ConversionController {
 	
@@ -36,15 +35,19 @@ public class ConversionController {
 
     @FXML
     private TextField txtConvertTo;
+    
+    @FXML
+    void handleCalculate(ActionEvent event) {
 
+    }
 
     @FXML
     void handleBack(ActionEvent event) {    	
     	try {
 
 			Parent root = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
-			((Stage) Main.stage).setScene(new Scene(root, 800, 800));
-			((Stage) Main.stage).show();
+			(Main.stage).setScene(new Scene(root, 800, 800));
+			(Main.stage).show();
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 public class MainController {
 
@@ -55,8 +54,8 @@ public class MainController {
 		try {
 
 			Parent root = FXMLLoader.load(getClass().getResource(path));
-			((Stage) Main.stage).setScene(new Scene(root, 800, 800));
-			((Stage) Main.stage).show();
+			(Main.stage).setScene(new Scene(root, 800, 800));
+			(Main.stage).show();
 
 		} catch (Exception e) {
 			e.printStackTrace();

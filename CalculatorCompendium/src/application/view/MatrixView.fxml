@@ -1,6 +1,6 @@
-<<<<<<< Upstream, based on origin/main
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.controller.MatrixController">   <children>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MatrixController">   <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
          <top>
             <Label fx:id="lblCalcType" text="Matrix Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -29,41 +29,116 @@
                   <Font name="Lucida Sans Unicode" size="15.0" />
                </font>
             </Button>
-         </bottom></BorderPane>
+         </bottom>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane maxWidth="750.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="txtA11" maxWidth="75.0" />
+                        <TextField fx:id="txtA12" layoutX="10.0" layoutY="35.0" maxWidth="75.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtA13" layoutX="125.0" layoutY="35.0" maxWidth="75.0" GridPane.columnIndex="2" />
+                        <TextField fx:id="txtA21" layoutX="241.0" layoutY="27.0" maxWidth="75.0" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtA22" layoutX="27.0" layoutY="85.0" maxWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtA23" layoutX="134.0" layoutY="85.0" maxWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtA31" layoutX="27.0" layoutY="85.0" maxWidth="75.0" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtA32" layoutX="27.0" layoutY="142.0" maxWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtA33" layoutX="134.0" layoutY="142.0" maxWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtB11" layoutX="27.0" layoutY="27.0" maxWidth="75.0" GridPane.columnIndex="4" />
+                        <TextField fx:id="txtB12" layoutX="455.0" layoutY="27.0" maxWidth="75.0" GridPane.columnIndex="5" />
+                        <TextField fx:id="txtB13" layoutX="562.0" layoutY="27.0" maxWidth="75.0" GridPane.columnIndex="6" />
+                        <TextField fx:id="txtB21" layoutX="455.0" layoutY="27.0" maxWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtB22" layoutX="455.0" layoutY="85.0" maxWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtB23" layoutX="562.0" layoutY="85.0" maxWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtB31" layoutX="455.0" layoutY="85.0" maxWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtB32" layoutX="455.0" layoutY="142.0" maxWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtB33" layoutX="562.0" layoutY="142.0" maxWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <Button fx:id="btnATimesB" mnemonicParsing="false" onAction="#handleATimesB" text="A x B" GridPane.columnIndex="3">
+                           <font>
+                              <Font name="Lucida Sans Unicode" size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                        <Button fx:id="btnAPlusB" layoutX="364.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleAPlusB" text="A + B" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Lucida Sans Unicode" size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                        <Button fx:id="btnAMinusB" layoutX="363.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleAMinusB" text="A + B" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Lucida Sans Unicode" size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets top="50.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <TextArea fx:id="txtResult" editable="false" prefHeight="200.0" prefWidth="200.0" text="Result..." GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="14.0" />
+                     </font>
+                  </TextArea>
+                  <GridPane maxHeight="75.0" GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="btnClear" mnemonicParsing="false" onAction="#handleClear" text="Clear" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="50.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="Lucida Sans Unicode" size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </center></BorderPane>
    </children>
 </AnchorPane>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.controller.MatrixController">   <children>
-      <BorderPane prefHeight="800.0" prefWidth="800.0">
-         <top>
-            <Label fx:id="lblCalcType" text="Matrix Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Lucida Sans Unicode" size="30.0" />
-               </font>
-               <padding>
-                  <Insets top="25.0" />
-               </padding>
-            </Label>
-         </top>
-         <bottom>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" text="Back" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="25.0" />
-               </BorderPane.margin>
-               <font>
-                  <Font name="Lucida Sans Unicode" size="15.0" />
-               </font>
-            </Button>
-         </bottom></BorderPane>
-   </children>
-</AnchorPane>
->>>>>>> 73d3a23 Merge from Surface.
