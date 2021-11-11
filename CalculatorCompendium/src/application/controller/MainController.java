@@ -38,7 +38,7 @@ public class MainController {
 		
 		switch (btnClicked) {
 		case "btnScientific":
-			path = "../view/ScientificView.fxml";
+			path = "../view/ScientificCalcView.fxml";
 			break;
 		case "btnConversion":
 			path = "../view/ConversionView.fxml";
