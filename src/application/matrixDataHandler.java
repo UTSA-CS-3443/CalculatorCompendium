@@ -14,14 +14,14 @@ public class matrixDataHandler {
     - This function will determine if the matrix is regular or irregular.
     - If the matrix is irregular then the function will return an error that will be printed into the result area.
       //UPDATE
-      - These two functions will count the amount of rows and columns. If the previous amount
-      of values in one row/column is not the same as the last then the function returns false
+      - The functions will use integers. These ints will return the size, they will also return different values that
+      - will tell the user if the matrix is irregular or if it is invalid.
      */
-    public boolean findRows(int[][] matrixA, int[][] matrixB){
-        return true;
+    public int findRows(int[][] matrix){
+        return 0;
     }
 
-    public boolean findColumns(int[][] matrixA, int[][] matrixB){
-        return true;
+    public int findColumns(int[][] matrix){
+        return 0;
     }
 }
