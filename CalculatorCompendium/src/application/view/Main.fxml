@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
@@ -13,7 +14,7 @@
    <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
          <center>
-            <GridPane fx:id="grdMain" maxHeight="200.0" maxWidth="600.0" BorderPane.alignment="CENTER">
+            <GridPane fx:id="grdMain" alignment="CENTER" maxHeight="200.0" maxWidth="500.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,36 +27,36 @@
                   <Insets bottom="50.0" top="75.0" />
                </BorderPane.margin>
                <children>
-                  <Button fx:id="btnScientific" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" text="Scientific">
+                  <Button fx:id="btnScientific" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Scientific" textFill="WHITE">
                      <font>
-                        <Font name="Century Gothic" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button id="glass-grey" fx:id="btnConversion" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" stylesheets="@style.css" text="Conversion" GridPane.columnIndex="1">
+                  <Button fx:id="btnConversion" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="150.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Conversion" textFill="WHITE" GridPane.columnIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
-                        <Font name="Lucida Sans Unicode" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button id="glass-grey" fx:id="btnMatrix" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" text="Matrix" GridPane.rowIndex="1">
+                  <Button fx:id="btnMatrix" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Matrix" textFill="WHITE" GridPane.rowIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
-                        <Font name="Lucida Sans Unicode" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button id="glass-grey" fx:id="btnTax" layoutX="115.0" layoutY="287.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" text="Tax" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="btnTax" layoutX="115.0" layoutY="287.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Tax" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
-                        <Font name="Lucida Sans Unicode" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Button>
                </children>
@@ -71,7 +72,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="50.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label id="h1" style="-fx-background-color: #4061AD;" text="Choose Your Calculator" GridPane.rowIndex="1">
+                  <Label id="h1" text="Choose Your Calculator" GridPane.rowIndex="1">
                      <font>
                         <Font name="Lucida Sans Unicode" size="27.0" />
                      </font>
@@ -84,10 +85,10 @@
                   </Label>
                   <ImageView fitHeight="100.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../images/logo.png" />
+                        <Image url="@../../../images/logoalt.png" />
                      </image>
                      <GridPane.margin>
-                        <Insets top="25.0" />
+                        <Insets top="40.0" />
                      </GridPane.margin>
                   </ImageView>
                </children>
@@ -109,7 +110,7 @@
                   <Insets bottom="100.0" />
                </BorderPane.margin>
                <children>
-                  <Button id="glass-grey" fx:id="btnFacts" mnemonicParsing="false" onAction="#handleFacts" prefHeight="45.0" prefWidth="300.0" text="Random Math Fact">
+                  <Button id="btnfact" fx:id="btnFacts" mnemonicParsing="false" onAction="#handleFacts" prefHeight="45.0" prefWidth="300.0">
                      <effect>
                         <DropShadow />
                      </effect>
@@ -117,7 +118,7 @@
                         <Font name="Lucida Sans Unicode" size="20.0" />
                      </font>
                   </Button>
-                  <Label fx:id="lblFact" text="Fact Displayed Here" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
+                  <Label fx:id="lblFact" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
                      <font>
                         <Font name="Century Gothic Bold Italic" size="20.0" />
                      </font>
@@ -129,6 +130,5 @@
             </GridPane>
          </bottom>
       </BorderPane>
-      <VBox layoutX="-319.0" layoutY="102.0" prefHeight="200.0" prefWidth="100.0" />
    </children>
 </AnchorPane>

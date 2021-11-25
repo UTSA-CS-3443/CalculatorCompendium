@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -8,27 +9,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TaxController">
+<AnchorPane id="bodycalc" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TaxController">
  <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
-         <top>
-            <Label fx:id="lblCalcType" text="Tax Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Lucida Sans Unicode" size="30.0" />
-               </font>
-               <padding>
-                  <Insets top="25.0" />
-               </padding>
-            </Label>
-         </top>
          <bottom>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" text="Back" BorderPane.alignment="CENTER">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" prefHeight="45.0" prefWidth="85.0" style="-fx-background-color: #2D4989; -fx-background-radius: 10px;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="25.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="Lucida Sans Unicode" size="15.0" />
+                  <Font name="Century Gothic Bold" size="18.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </bottom>
          <center>
@@ -52,14 +46,14 @@
                     <columnConstraints>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnClear" maxWidth="85.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" GridPane.columnIndex="2">
+                        <Button id="btnclear" fx:id="btnClear" maxWidth="125.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" GridPane.columnIndex="2">
                            <font>
                               <Font name="Lucida Sans Unicode" size="14.0" />
                            </font>
@@ -67,7 +61,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button fx:id="btnCalculate" layoutX="255.0" layoutY="19.0" maxWidth="85.0" mnemonicParsing="false" onAction="#handleCalculate" text="Calculate" GridPane.columnIndex="3">
+                        <Button id="btncalculate" fx:id="btnCalculate" layoutX="255.0" layoutY="19.0" maxWidth="125.0" mnemonicParsing="false" onAction="#handleCalculate" text="Calculate" GridPane.columnIndex="3">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -225,9 +219,19 @@
                   </GridPane>
                </children>
                <padding>
-                  <Insets top="175.0" />
+                  <Insets top="125.0" />
                </padding>
             </GridPane>
-         </center></BorderPane>
+         </center>
+         <top>
+            <ImageView fitHeight="100.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../images/taxcalc.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets top="40.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </top></BorderPane>
    </children>
 </AnchorPane>

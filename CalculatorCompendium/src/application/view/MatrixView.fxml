@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -8,26 +9,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MatrixController">   <children>
+<AnchorPane id="bodycalc" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MatrixController">   <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
-         <top>
-            <Label fx:id="lblCalcType" text="Matrix Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Lucida Sans Unicode" size="30.0" />
-               </font>
-               <padding>
-                  <Insets top="25.0" />
-               </padding>
-            </Label>
-         </top>
          <bottom>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" text="Back" BorderPane.alignment="CENTER">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" prefHeight="45.0" prefWidth="85.0" style="-fx-background-color: #2D4989; -fx-background-radius: 10px;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="25.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="Lucida Sans Unicode" size="15.0" />
+                  <Font name="Century Gothic Bold" size="18.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </bottom>
          <center>
@@ -124,7 +118,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnClear" mnemonicParsing="false" onAction="#handleClear" text="Clear" GridPane.columnIndex="1">
+                        <Button id="btnclear" fx:id="btnClear" mnemonicParsing="false" onAction="#handleClear" prefWidth="85.0" text="Clear" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets right="50.0" />
                            </GridPane.margin>
@@ -139,6 +133,16 @@
                   </GridPane>
                </children>
             </GridPane>
-         </center></BorderPane>
+         </center>
+         <top>
+            <ImageView fitHeight="100.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../images/matrixcalc.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets top="40.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </top></BorderPane>
    </children>
 </AnchorPane>
