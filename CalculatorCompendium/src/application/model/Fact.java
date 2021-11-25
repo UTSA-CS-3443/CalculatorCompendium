@@ -1,6 +1,7 @@
 /**
- * @author Estela V. Rodriguez-Greenfield (wgi663)
- *
+ * Fact represents a list of facts that are loaded from a file.
+ * 
+ * @author Estela V. Rodriguez-Greenfield (wgi663) 
  */
 package application.model;
 
@@ -14,28 +15,45 @@ public class Fact {
 
 	private ArrayList<String> facts;
 
+	/**
+	 * Constructor for the class, initializes the ArrayList of Strings.
+	 */
 	public Fact() {
 		this.facts = new ArrayList<String>();
 	}
 
 	/**
-	 * @return the facts
+	 * Getter method for the ArrayList of Strings.
+	 * 
+	 * @return facts, an ArrayList<String>
 	 */
 	public ArrayList<String> getFacts() {
 		return facts;
 	}
 
 	/**
-	 * @param facts the facts to set
+	 * Setter method for the facts.
+	 * 
+	 * @param facts, an ArrayList<String>
 	 */
 	public void setFacts(ArrayList<String> facts) {
 		this.facts = facts;
 	}
 
+	/**
+	 * Method to add a fact to the list of facts.
+	 * 
+	 * @param fact, a String
+	 */
 	public void addFact(String fact) {
 		this.facts.add(fact);
 	}
 	
+	/**
+	 * Method to pick a random fact from the list of facts and return it.
+	 * 
+	 * @return fact, a String
+	 */
 	public String randomFact() {
 		String fact = null;
 		if (this.facts.isEmpty()) {
@@ -50,6 +68,11 @@ public class Fact {
 		return fact;
 	}
 
+	/**
+	 * Method to load the facts from a file.
+	 * 
+	 * @param fileName, a String
+	 */
 	public void loadFacts(String fileName) {
 		try {
 			File file = new File(fileName);
