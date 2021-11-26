@@ -8,6 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.collections.*?>
 
 <AnchorPane id="bodycalc" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TaxController">
  <children>
@@ -204,11 +205,73 @@
                            <GridPane.margin>
                               <Insets bottom="10.0" />
                            </GridPane.margin>
+                           <items>
+						        <FXCollections fx:factory="observableArrayList">
+						          <String fx:value="ALABAMA" />
+						          <String fx:value="ALASKA" />
+						          <String fx:value="ARIZONA" />
+						          <String fx:value="ARKANSAS" />
+						          <String fx:value="CALIFORNIA" />
+						          <String fx:value="COLORADO" />
+						          <String fx:value="CONNECTICUT" />
+						          <String fx:value="DELAWARE" />
+						          <String fx:value="FLORIDA" />
+						          <String fx:value="GEORGIA" />
+						          <String fx:value="HAWAII" />
+						          <String fx:value="IDAHO" />
+						          <String fx:value="ILLINOIS" />
+						          <String fx:value="INDIANA" />
+						          <String fx:value="IOWA" />
+						          <String fx:value="KANSAS" />
+						          <String fx:value="KENTUCKY" />
+						          <String fx:value="LOUISIANA" />
+						          <String fx:value="MAINE" />
+						          <String fx:value="MARYLAND" />
+						          <String fx:value="MASSACHUSETTS" />
+						          <String fx:value="MICHIGAN" />
+						          <String fx:value="MINNESOTA" />
+						          <String fx:value="MISSISSIPPI" />
+						          <String fx:value="MISSOURI" />
+						          <String fx:value="MONTANA" />
+						          <String fx:value="NEBRASKA" />
+						          <String fx:value="NEVADA" />
+						          <String fx:value="NEW HAMPSHIRE" />
+						          <String fx:value="NEW JERSEY" />
+						          <String fx:value="NEW MEXICO" />
+						          <String fx:value="NEW YORK" />
+						          <String fx:value="NORTH CAROLINA" />
+						          <String fx:value="NORTH DAKOTA" />
+						          <String fx:value="OHIO" />
+						          <String fx:value="OKLAHOMA" />
+						          <String fx:value="OREGON" />
+						          <String fx:value="PENNSYLVANIA" />
+						          <String fx:value="RHODE ISLAND" />
+						          <String fx:value="SOUTH CAROLINA" />
+						          <String fx:value="SOUTH DAKOTA" />
+						          <String fx:value="TENNESSEE" />
+						          <String fx:value="TEXAS" />
+						          <String fx:value="UTAH" />
+						          <String fx:value="VERMONT" />
+						          <String fx:value="VIRGINIA" />
+						          <String fx:value="WASHINGTON" />
+						          <String fx:value="WEST VIRGINIA" />
+						          <String fx:value="WISCONSIN" />
+						          <String fx:value="WYOMING" />
+						          <String fx:value="DIST. OF COLUMBIA" />
+						          
+						        </FXCollections>
+						      </items>
                         </ComboBox>
                         <ComboBox fx:id="ddFilingStatus" layoutX="235.0" layoutY="73.0" prefWidth="150.0" promptText="Filing Status" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="10.0" />
                            </GridPane.margin>
+					           <items>
+						        <FXCollections fx:factory="observableArrayList">
+						          <String fx:value="Single" />
+						          <String fx:value="Married" />
+						        </FXCollections>
+					      </items>
                         </ComboBox>
                         <TextField fx:id="txtHouseholdIncome" maxWidth="150.0" promptText="Household Income" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>

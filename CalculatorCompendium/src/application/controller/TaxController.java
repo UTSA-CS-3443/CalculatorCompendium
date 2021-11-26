@@ -7,6 +7,7 @@
 package application.controller;
 
 import application.Main;
+import application.model.taxCalc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +15,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class TaxController {
 
 	@FXML
-	private ComboBox<?> ddLocation;
+	private ComboBox<String> ddLocation;
 
 	@FXML
 	private Button btnBack;
@@ -46,16 +48,43 @@ public class TaxController {
 	private TextField txtExceptions;
 
 	@FXML
-	private ComboBox<?> ddFilingStatus;
+	private ComboBox<String> ddFilingStatus;
 
 	@FXML
+    private Label lblResult;
+	
+	@FXML
 	void handleClear(ActionEvent event) {
-
+		txtHouseholdIncome.clear();
+		txt401k.clear();
+		txtIRA.clear();
+		txtDeductions.clear();
+		txtExceptions.clear();
+		ddLocation.setValue(null);
+		ddFilingStatus.setValue(null);
+		lblResult.setText(null);
 	}
 
 	@FXML
 	void handleCalculate(ActionEvent event) {
+		
+		int householdIncome = Integer.parseInt(txtHouseholdIncome.getText());
+		int cont401k = Integer.parseInt(txt401k.getText());
+		int contIRA = Integer.parseInt(txtIRA.getText());
+		int ded = Integer.parseInt(txtDeductions.getText());
+		int numExcepts = Integer.parseInt(txtExceptions.getText());
+		String location = ddLocation.getValue().toString();
+		String filingStatus = ddFilingStatus.getValue();
+		System.out.println(householdIncome);
+		System.out.println(cont401k);
+		System.out.println(contIRA);
+		System.out.println(ded);
+		System.out.println(numExcepts);
+		System.out.println(location);
+		System.out.println(filingStatus);
 
+		taxCalc evnt = new taxCalc(householdIncome, cont401k, contIRA, ded, numExcepts, filingStatus, location);
+		lblResult.setText("Income Tax To Be Paid: $" + evnt.calcTaxes());
 	}
 
 	@FXML

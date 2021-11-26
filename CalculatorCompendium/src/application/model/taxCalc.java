@@ -19,7 +19,6 @@ public class taxCalc {
 	ArrayList<taxCalcBracket> fedTaxRatesSingle = new ArrayList<taxCalcBracket>();
 	ArrayList<taxCalcBracket> fedTaxRatesMarried = new ArrayList<taxCalcBracket>();
 
-	
 	public taxCalc(int hshldIncome, int cont401k, int contIRA, int ded, int numExcepts, String flingStatus, String loc) {
 		this.setHouseholdIncome(hshldIncome);
 		this.setContribution401k(cont401k);
@@ -29,10 +28,10 @@ public class taxCalc {
 		this.setFilingStatus(flingStatus);
 		this.setLocation(loc);
 		this.loadFederalTaxes();
-		this.loadStates("data/states.csv");
-		this.loadTaxRates("data/stateTaxRatesMarried.csv", "Married");
-		this.loadTaxRates("data/stateTaxRatesSingle.csv", "Single");
-		this.loadLocalTaxes("data/avgLocalTaxRateByState.csv");
+		this.loadStates("CalculatorCompendium/data/states.csv");
+		this.loadTaxRates("CalculatorCompendium/data/stateTaxRatesMarried.csv", "Married");
+		this.loadTaxRates("CalculatorCompendium/data/stateTaxRatesSingle.csv", "Single");
+		this.loadLocalTaxes("CalculatorCompendium/data/avgLocalTaxRateByState.csv");
 		
 	}
 	
@@ -79,7 +78,9 @@ public class taxCalc {
 				temp = scan.nextLine().split(",");
 				int index = findStateIndex(temp[0]);
 				for(int i = 1; i<temp.length; i+=2) {
-					this.states.get(index).addToArrayList(sts, Integer.parseInt(temp[i]),  Integer.parseInt(temp[i+2]), Double.parseDouble(temp[i+1]));
+					if(i+1 < temp.length) {
+						this.states.get(index).addToArrayList(sts, Integer.parseInt(temp[i]),  Integer.parseInt(temp[i+2]), Double.parseDouble(temp[i+1]));						
+					}
 				}
 			}
 			scan.close();
@@ -107,7 +108,7 @@ public class taxCalc {
 	}
 	
 	public int findStateIndex(String nm) {
-		int index = -1;
+		int index = 1;
 		for(int i = 0; i < this.states.size(); i++) {		
 			if(this.states.get(i).getName() == nm) {
 				index = i;
@@ -136,10 +137,10 @@ public class taxCalc {
 		return federalTaxes;
 	}
 	
-	public double calcTaxes(int hshldIncome, int cont401k, int contIRA, int ded, int numExcepts, String flingStatus, String loc) {
+	public double calcTaxes() {
 		double totalTaxes = 0.0;
-		int stateIndex = findStateIndex(loc);
-		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(hshldIncome, flingStatus) + this.calcFedTaxes(hshldIncome, flingStatus);
+		int stateIndex = findStateIndex(this.location);
+		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(this.householdIncome, this.filingStatus) + this.calcFedTaxes(this.householdIncome, this.filingStatus);
 		return totalTaxes;
 	}
 	
