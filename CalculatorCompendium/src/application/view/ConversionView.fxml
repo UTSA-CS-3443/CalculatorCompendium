@@ -80,7 +80,7 @@
                         </ComboBox>
                      </children>
                   </GridPane>
-                  <ComboBox fx:id="ddConversionType" prefWidth="350.0" promptText="Select Conversion Type">
+                  <ComboBox fx:id="ddConversionType" onAction="#conversionType" prefWidth="350.0" promptText="Select Conversion Type">
                      <effect>
                         <DropShadow />
                      </effect>
