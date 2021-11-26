@@ -3,10 +3,8 @@ package application.model;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.Map;
+
 
 public class taxCalc {
 	
@@ -17,54 +15,188 @@ public class taxCalc {
 	private int numTaxExceptions;
 	private String filingStatus;
 	private String location;
-	private taxCalcState[] states;
-	Hashtable<Integer, Double> fedTaxRatesSingle = new Hashtable<>();
-	Hashtable<Integer, Double> fedTaxRatesMarried = new Hashtable<>();
+	ArrayList<taxCalcState> states = new ArrayList<taxCalcState>();
+	ArrayList<taxCalcBracket> fedTaxRatesSingle = new ArrayList<taxCalcBracket>();
+	ArrayList<taxCalcBracket> fedTaxRatesMarried = new ArrayList<taxCalcBracket>();
 
 	
 	public taxCalc(int hshldIncome, int cont401k, int contIRA, int ded, int numExcepts, String flingStatus, String loc) {
-		this.householdIncome = hshldIncome;
-		this.contribution401k = cont401k;
-		this.contributionIRA = contIRA;
-		this.deductions = ded;
-		this.numTaxExceptions = numExcepts;
-		this.filingStatus = flingStatus;
-		this.location = loc;
-		fedTaxRatesSingle.put(0, 0.1);
-		fedTaxRatesSingle.put(9950, 0.12);
-		fedTaxRatesSingle.put(40525, 0.22);
-		fedTaxRatesSingle.put(86375, 0.24);
-		fedTaxRatesSingle.put(164925, 0.32);
-		fedTaxRatesSingle.put(209425, 0.35);
-		fedTaxRatesSingle.put(523600, 0.37);
-		fedTaxRatesMarried.put(0, 0.1);
-		fedTaxRatesMarried.put(19900, 0.12);
-		fedTaxRatesMarried.put(81050, 0.22);
-		fedTaxRatesMarried.put(172750, 0.24);
-		fedTaxRatesMarried.put(329850, 0.32);
-		fedTaxRatesMarried.put(418850, 0.35);
-		fedTaxRatesMarried.put(628300, 0.37);
+		this.setHouseholdIncome(hshldIncome);
+		this.setContribution401k(cont401k);
+		this.setContributionIRA(contIRA);
+		this.setDeductions(ded);
+		this.setNumTaxExceptions(numExcepts);
+		this.setFilingStatus(flingStatus);
+		this.setLocation(loc);
+		this.loadFederalTaxes();
+		this.loadStates("data/states.csv");
+		this.loadTaxRates("data/stateTaxRatesMarried.csv", "Married");
+		this.loadTaxRates("data/stateTaxRatesSingle.csv", "Single");
+		this.loadLocalTaxes("data/avgLocalTaxRateByState.csv");
 		
-
 	}
 	
-	public void loadTaxRates(String fileName) {
+	public void loadFederalTaxes() {
+		fedTaxRatesSingle.add(new taxCalcBracket(0.1, 0, 9950));
+		fedTaxRatesSingle.add(new taxCalcBracket(0.12, 9950, 40525));
+		fedTaxRatesSingle.add(new taxCalcBracket(0.22, 40525, 86375));
+		fedTaxRatesSingle.add(new taxCalcBracket(0.24, 86375, 164925));
+		fedTaxRatesSingle.add(new taxCalcBracket(0.32, 164925, 209425));
+		fedTaxRatesSingle.add(new taxCalcBracket(0.35, 209425, 523600));
+		fedTaxRatesSingle.add(new taxCalcBracket(0.37, 523600, 2147483647));
+		fedTaxRatesMarried.add(new taxCalcBracket(0.1, 0, 19900));
+		fedTaxRatesMarried.add(new taxCalcBracket(0.12, 19900, 81050));
+		fedTaxRatesMarried.add(new taxCalcBracket(0.22, 81050, 172750));
+		fedTaxRatesMarried.add(new taxCalcBracket(0.24, 172750, 329850));
+		fedTaxRatesMarried.add(new taxCalcBracket(0.32, 329850, 418850));
+		fedTaxRatesMarried.add(new taxCalcBracket(0.35, 418850, 628300));
+		fedTaxRatesMarried.add(new taxCalcBracket(0.37, 628300, 2147483647));
+	}
+	
+	public void loadStates(String fileName) {
+		try {
+			File file = new File(fileName);
+			Scanner scan = new Scanner(file);
+			while (scan.hasNextLine()) {
+				String stateName = scan.nextLine();
+				taxCalcState newState = new taxCalcState(stateName);
+				this.states.add(newState);
+			}
+			scan.close();
+		} catch (IOException e) {
+			System.out.println("Error loading the file - please check its location.");
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadTaxRates(String fileName, String sts) {
 		String[] temp;
-		String tempName;
+		
 		try {
 			File file = new File(fileName);
 			Scanner scan = new Scanner(file);
 			while (scan.hasNextLine()) {
 				temp = scan.nextLine().split(",");
-				
+				int index = findStateIndex(temp[0]);
+				for(int i = 1; i<temp.length; i+=2) {
+					this.states.get(index).addToArrayList(sts, Integer.parseInt(temp[i]),  Integer.parseInt(temp[i+2]), Double.parseDouble(temp[i+1]));
+				}
 			}
 			scan.close();
-		} catch (
-
-		IOException e) {
+		} catch (IOException e) {
 			System.out.println("Error loading the file");
 			e.printStackTrace();
 		}
+	}
+	
+	public void loadLocalTaxes(String fileName) {
+		String[] temp;
+		try {
+			File file = new File(fileName);
+			Scanner scan = new Scanner(file);
+			while (scan.hasNextLine()) {
+				temp = scan.nextLine().split(",");
+				int index = findStateIndex(temp[0]);
+				this.states.get(index).setAvgLocalTaxRate(Double.parseDouble(temp[1]));
+			}
+			scan.close();
+		} catch (IOException e) {
+			System.out.println("Error loading the file");
+			e.printStackTrace();
+		}
+	}
+	
+	public int findStateIndex(String nm) {
+		int index = -1;
+		for(int i = 0; i < this.states.size(); i++) {		
+			if(this.states.get(i).getName() == nm) {
+				index = i;
+			}
+		}
+		return index;
+	}
+
+	public double calcFedTaxes(int householdInc, String filingStatus) {
+		double federalTaxes = 0.0;
+		
+		ArrayList<taxCalcBracket> current = new ArrayList<taxCalcBracket>();
+		if (filingStatus == "Single") {
+			current = this.fedTaxRatesSingle;
+		} else if (filingStatus == "Married") {
+			current = this.fedTaxRatesMarried;
+		}
+		
+		for(int i=0; i<current.size(); i++) {
+			if(!(householdInc > current.get(i).getStartingIncome() && householdInc <= current.get(i).getMaxIncome())) {
+				federalTaxes += current.get(i).getMaxTaxes();
+			} else {
+				federalTaxes += current.get(i).getTaxRate() * (householdInc - current.get(i).getStartingIncome());
+			}
+		}
+		return federalTaxes;
+	}
+	
+	public double calcTaxes(int hshldIncome, int cont401k, int contIRA, int ded, int numExcepts, String flingStatus, String loc) {
+		double totalTaxes = 0.0;
+		int stateIndex = findStateIndex(loc);
+		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(hshldIncome, flingStatus) + this.calcFedTaxes(hshldIncome, flingStatus);
+		return totalTaxes;
+	}
+	
+	public int getHouseholdIncome() {
+		return householdIncome;
+	}
+
+	public void setHouseholdIncome(int householdIncome) {
+		this.householdIncome = householdIncome;
+	}
+
+	public int getContribution401k() {
+		return contribution401k;
+	}
+
+	public void setContribution401k(int contribution401k) {
+		this.contribution401k = contribution401k;
+	}
+
+	public int getContributionIRA() {
+		return contributionIRA;
+	}
+
+	public void setContributionIRA(int contributionIRA) {
+		this.contributionIRA = contributionIRA;
+	}
+
+	public int getDeductions() {
+		return deductions;
+	}
+
+	public void setDeductions(int deductions) {
+		this.deductions = deductions;
+	}
+
+	public int getNumTaxExceptions() {
+		return numTaxExceptions;
+	}
+
+	public void setNumTaxExceptions(int numTaxExceptions) {
+		this.numTaxExceptions = numTaxExceptions;
+	}
+
+	public String getFilingStatus() {
+		return filingStatus;
+	}
+
+	public void setFilingStatus(String filingStatus) {
+		this.filingStatus = filingStatus;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	
 }
