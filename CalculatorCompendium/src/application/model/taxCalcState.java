@@ -44,9 +44,9 @@ public class taxCalcState {
 		double stateTaxes = 0.0;
 		
 		ArrayList<taxCalcBracket> current = new ArrayList<taxCalcBracket>();
-		if (filingStatus == "Single") {
+		if (filingStatus.equals("Single")) {
 			current = this.single;
-		} else if (filingStatus == "Married") {
+		} else if (filingStatus.equals("Married")) {
 			current = this.married;
 		}
 		
@@ -55,6 +55,7 @@ public class taxCalcState {
 				stateTaxes += current.get(i).getMaxTaxes();
 			} else {
 				stateTaxes += current.get(i).getTaxRate() * (householdInc - current.get(i).getStartingIncome());
+				break;
 			}
 		}
 

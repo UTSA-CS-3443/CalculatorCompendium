@@ -75,15 +75,13 @@ public class TaxController {
 		int numExcepts = Integer.parseInt(txtExceptions.getText());
 		String location = ddLocation.getValue().toString();
 		String filingStatus = ddFilingStatus.getValue();
-		System.out.println(householdIncome);
-		System.out.println(cont401k);
-		System.out.println(contIRA);
-		System.out.println(ded);
-		System.out.println(numExcepts);
-		System.out.println(location);
-		System.out.println(filingStatus);
 
 		taxCalc evnt = new taxCalc(householdIncome, cont401k, contIRA, ded, numExcepts, filingStatus, location);
+		evnt.loadFederalTaxes();
+		evnt.loadStates("CalculatorCompendium/data/states.csv");
+		evnt.loadTaxRates("CalculatorCompendium/data/stateTaxRatesMarried.csv", "Married");
+		evnt.loadTaxRates("CalculatorCompendium/data/stateTaxRatesSingle.csv", "Single");
+		evnt.loadLocalTaxes("CalculatorCompendium/data/avgLocalTaxRateByState.csv");
 		lblResult.setText("Income Tax To Be Paid: $" + evnt.calcTaxes());
 	}
 

@@ -27,11 +27,6 @@ public class taxCalc {
 		this.setNumTaxExceptions(numExcepts);
 		this.setFilingStatus(flingStatus);
 		this.setLocation(loc);
-		this.loadFederalTaxes();
-		this.loadStates("CalculatorCompendium/data/states.csv");
-		this.loadTaxRates("CalculatorCompendium/data/stateTaxRatesMarried.csv", "Married");
-		this.loadTaxRates("CalculatorCompendium/data/stateTaxRatesSingle.csv", "Single");
-		this.loadLocalTaxes("CalculatorCompendium/data/avgLocalTaxRateByState.csv");
 		
 	}
 	
@@ -108,9 +103,9 @@ public class taxCalc {
 	}
 	
 	public int findStateIndex(String nm) {
-		int index = 1;
+		int index = -1;
 		for(int i = 0; i < this.states.size(); i++) {		
-			if(this.states.get(i).getName() == nm) {
+			if(this.states.get(i).getName().equals(nm)) {
 				index = i;
 			}
 		}
@@ -121,18 +116,20 @@ public class taxCalc {
 		double federalTaxes = 0.0;
 		
 		ArrayList<taxCalcBracket> current = new ArrayList<taxCalcBracket>();
-		if (filingStatus == "Single") {
+		if (filingStatus.equals("Single")) {
 			current = this.fedTaxRatesSingle;
-		} else if (filingStatus == "Married") {
+		} else if (filingStatus.equals("Married")) {
 			current = this.fedTaxRatesMarried;
 		}
 		
 		for(int i=0; i<current.size(); i++) {
-			if(!(householdInc > current.get(i).getStartingIncome() && householdInc <= current.get(i).getMaxIncome())) {
+			if(!((householdInc > current.get(i).getStartingIncome()) && (householdInc <= current.get(i).getMaxIncome()))) {
 				federalTaxes += current.get(i).getMaxTaxes();
 			} else {
 				federalTaxes += current.get(i).getTaxRate() * (householdInc - current.get(i).getStartingIncome());
+				break;
 			}
+			System.out.println(federalTaxes);
 		}
 		return federalTaxes;
 	}
