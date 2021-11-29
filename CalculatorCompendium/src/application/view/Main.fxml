@@ -27,7 +27,7 @@
                   <Insets bottom="50.0" top="75.0" />
                </BorderPane.margin>
                <children>
-                  <Button fx:id="btnScientific" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Scientific" textFill="WHITE">
+                  <Button fx:id="btnScientific" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Scientific" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="20.0" />
                      </font>
@@ -35,7 +35,7 @@
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button fx:id="btnConversion" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="150.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Conversion" textFill="WHITE" GridPane.columnIndex="1">
+                  <Button fx:id="btnConversion" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Conversion" textFill="WHITE" GridPane.columnIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
@@ -43,7 +43,7 @@
                         <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnMatrix" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Matrix" textFill="WHITE" GridPane.rowIndex="1">
+                  <Button fx:id="btnMatrix" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Matrix" textFill="WHITE" GridPane.rowIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
@@ -51,7 +51,7 @@
                         <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnTax" layoutX="115.0" layoutY="287.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Tax" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="btnTax" layoutX="115.0" layoutY="287.0" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Tax" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
@@ -105,9 +105,10 @@
               <rowConstraints>
                 <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" valignment="CENTER" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="50.0" valignment="BOTTOM" vgrow="SOMETIMES" />
               </rowConstraints>
                <BorderPane.margin>
-                  <Insets bottom="100.0" />
+                  <Insets bottom="25.0" />
                </BorderPane.margin>
                <children>
                   <Button id="btnfact" fx:id="btnFacts" mnemonicParsing="false" onAction="#handleFacts" prefHeight="45.0" prefWidth="300.0">
@@ -126,6 +127,17 @@
                         <Insets left="45.0" right="45.0" />
                      </GridPane.margin>
                   </Label>
+                  <ImageView id="snake" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../../../images/snake.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets right="25.0" />
+                     </GridPane.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ImageView>
                </children>
             </GridPane>
          </bottom>

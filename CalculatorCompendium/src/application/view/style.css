@@ -56,3 +56,17 @@
     -fx-font-size: 16px;
     -fx-padding: 10 20 10 20;
 }
+
+#cbox_conv {
+	-fx-font-family: "Century Gothic";
+	-fx-font-size: 16px;
+}
+
+#cbox_conv2 {
+	-fx-font-family: "Century Gothic";
+	-fx-font-size: 12px;
+}
+
+#snake: hover{
+	-fx-background-image:url("../../../images/snake_hov.png");
+}

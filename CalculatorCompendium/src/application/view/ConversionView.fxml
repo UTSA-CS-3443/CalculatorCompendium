@@ -54,7 +54,7 @@
                         </Label>
                         <TextField fx:id="txtConvertFrom" text="Convert From">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="18.0" />
+                              <Font name="Century Gothic" size="18.0" />
                            </font>
                            <effect>
                               <DropShadow />
@@ -62,25 +62,25 @@
                         </TextField>
                         <TextField fx:id="txtConvertTo" layoutX="10.0" layoutY="55.0" text="Convert To" GridPane.columnIndex="2">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="18.0" />
+                              <Font name="Century Gothic" size="18.0" />
                            </font>
                            <effect>
                               <DropShadow />
                            </effect>
                         </TextField>
-                        <ComboBox fx:id="ddConvertFrom" prefWidth="200.0" promptText="Unit To Convert From" GridPane.rowIndex="1">
+                        <ComboBox id="cbox_conv2" fx:id="ddConvertFrom" prefWidth="200.0" promptText="Unit To Convert From" GridPane.rowIndex="1">
                            <effect>
                               <DropShadow />
                            </effect>
                         </ComboBox>
-                        <ComboBox fx:id="ddConvertTo" layoutX="10.0" layoutY="94.0" prefWidth="200.0" promptText="Unit To Convert To" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <ComboBox id="cbox_conv2" fx:id="ddConvertTo" layoutX="10.0" layoutY="94.0" prefWidth="200.0" promptText="Unit To Convert To" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <effect>
                               <DropShadow />
                            </effect>
                         </ComboBox>
                      </children>
                   </GridPane>
-                  <ComboBox fx:id="ddConversionType" onAction="#conversionType" prefWidth="350.0" promptText="Select Conversion Type">
+                  <ComboBox id="cbox_conv" fx:id="ddConversionType" onAction="#conversionType" prefWidth="350.0" promptText="Select Conversion Type" style="-fx-pref-height: 40;">
                      <effect>
                         <DropShadow />
                      </effect>

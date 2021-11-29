@@ -78,10 +78,10 @@ public class TaxController {
 
 		taxCalc evnt = new taxCalc(householdIncome, cont401k, contIRA, ded, numExcepts, filingStatus, location);
 		evnt.loadFederalTaxes();
-		evnt.loadStates("CalculatorCompendium/data/states.csv");
-		evnt.loadTaxRates("CalculatorCompendium/data/stateTaxRatesMarried.csv", "Married");
-		evnt.loadTaxRates("CalculatorCompendium/data/stateTaxRatesSingle.csv", "Single");
-		evnt.loadLocalTaxes("CalculatorCompendium/data/avgLocalTaxRateByState.csv");
+		evnt.loadStates("data/states.csv");
+		evnt.loadTaxRates("data/stateTaxRatesMarried.csv", "Married");
+		evnt.loadTaxRates("data/stateTaxRatesSingle.csv", "Single");
+		evnt.loadLocalTaxes("data/avgLocalTaxRateByState.csv");
 		lblResult.setText("Income Tax To Be Paid: $" + evnt.calcTaxes());
 	}
 
