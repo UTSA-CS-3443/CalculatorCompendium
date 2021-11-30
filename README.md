@@ -38,6 +38,8 @@ TODO
 
 Background from [Vecteezy](www.vecteezy.com)
 
+Snake Game inspiration from tutorial by [Dr. Almas Baimagambetov](https://github.com/AlmasB)
+
 Snake Icon from [Freepik](www.flaticon.com)
 
 Snake Game Sounds from [The Motion Monkey](https://www.themotionmonkey.co.uk/free-resources/retro-arcade-sounds/)
