@@ -4,7 +4,8 @@
 
 A collection of different calculators to aid in a variety of tasks and calculations, with a bonus game for when you need a break. 
 
-It includes:
+## Features
+
 * Scientific Calculator
 * Conversion Calculator
 * Matrix Calculator
