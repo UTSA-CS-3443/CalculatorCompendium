@@ -17,8 +17,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class TaxController {
+	
+	private static final DecimalFormat df = new DecimalFormat("#.00");
 
 	@FXML
 	private ComboBox<String> ddLocation;
@@ -78,11 +82,11 @@ public class TaxController {
 
 		taxCalc evnt = new taxCalc(householdIncome, cont401k, contIRA, ded, numExcepts, filingStatus, location);
 		evnt.loadFederalTaxes();
-		evnt.loadStates("data/states.csv");
-		evnt.loadTaxRates("data/stateTaxRatesMarried.csv", "Married");
-		evnt.loadTaxRates("data/stateTaxRatesSingle.csv", "Single");
-		evnt.loadLocalTaxes("data/avgLocalTaxRateByState.csv");
-		lblResult.setText("Income Tax To Be Paid: $" + evnt.calcTaxes());
+		evnt.loadStates("CalculatorCompendium/data/states.csv");
+		evnt.loadTaxRates("CalculatorCompendium/data/stateTaxRatesMarried.csv", "Married");
+		evnt.loadTaxRates("CalculatorCompendium/data/stateTaxRatesSingle.csv", "Single");
+		evnt.loadLocalTaxes("CalculatorCompendium/data/avgLocalTaxRateByState.csv");
+		lblResult.setText("Income Tax To Be Paid: $" + df.format(evnt.calcTaxes()));
 	}
 
 	@FXML

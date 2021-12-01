@@ -34,13 +34,14 @@ public class taxCalcState {
 		return this.name;
 	}
 	
-	public double calcStateAndLocalTaxes(int householdInc, String filingStatus) {
-		double localTaxes = householdInc * this.getAvgLocalTaxRate();
-		double stateTaxes = calcStateTaxes(householdInc, filingStatus);
+	public double calcStateAndLocalTaxes(double householdInc, int cont401k, int contIRA,String filingStatus) {
+		double taxableIncome = householdInc - cont401k - contIRA;
+		double localTaxes = taxableIncome * this.getAvgLocalTaxRate();
+		double stateTaxes = calcStateTaxes(taxableIncome, filingStatus);
 		return localTaxes + stateTaxes;
 	}
 	
-	public double calcStateTaxes(int householdInc, String filingStatus) {
+	public double calcStateTaxes(double taxableIncome, String filingStatus) {
 		double stateTaxes = 0.0;
 		
 		ArrayList<taxCalcBracket> current = new ArrayList<taxCalcBracket>();
@@ -51,10 +52,10 @@ public class taxCalcState {
 		}
 		
 		for(int i=0; i<current.size(); i++) {
-			if(!(householdInc > current.get(i).getStartingIncome() && householdInc <= current.get(i).getMaxIncome())) {
+			if(!(taxableIncome > current.get(i).getStartingIncome() && taxableIncome <= current.get(i).getMaxIncome())) {
 				stateTaxes += current.get(i).getMaxTaxes();
 			} else {
-				stateTaxes += current.get(i).getTaxRate() * (householdInc - current.get(i).getStartingIncome());
+				stateTaxes += current.get(i).getTaxRate() * (taxableIncome - current.get(i).getStartingIncome());
 				break;
 			}
 		}

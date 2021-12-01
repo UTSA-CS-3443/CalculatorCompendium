@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+
 public class taxCalc {
 	
-	private int householdIncome;
+	private double householdIncome;
+	
 	private int contribution401k;
 	private int contributionIRA;
 	private int deductions;
@@ -19,7 +21,7 @@ public class taxCalc {
 	ArrayList<taxCalcBracket> fedTaxRatesSingle = new ArrayList<taxCalcBracket>();
 	ArrayList<taxCalcBracket> fedTaxRatesMarried = new ArrayList<taxCalcBracket>();
 
-	public taxCalc(int hshldIncome, int cont401k, int contIRA, int ded, int numExcepts, String flingStatus, String loc) {
+	public taxCalc(double hshldIncome, int cont401k, int contIRA, int ded, int numExcepts, String flingStatus, String loc) {
 		this.setHouseholdIncome(hshldIncome);
 		this.setContribution401k(cont401k);
 		this.setContributionIRA(contIRA);
@@ -112,8 +114,9 @@ public class taxCalc {
 		return index;
 	}
 
-	public double calcFedTaxes(int householdInc, String filingStatus) {
+	public double calcFedTaxes(double householdInc, int cont401k, int contIRA, String filingStatus) {
 		double federalTaxes = 0.0;
+		double taxableIncome = householdInc - cont401k - contIRA;
 		
 		ArrayList<taxCalcBracket> current = new ArrayList<taxCalcBracket>();
 		if (filingStatus.equals("Single")) {
@@ -123,13 +126,12 @@ public class taxCalc {
 		}
 		
 		for(int i=0; i<current.size(); i++) {
-			if(!((householdInc > current.get(i).getStartingIncome()) && (householdInc <= current.get(i).getMaxIncome()))) {
+			if(!((taxableIncome > current.get(i).getStartingIncome()) && (taxableIncome <= current.get(i).getMaxIncome()))) {
 				federalTaxes += current.get(i).getMaxTaxes();
 			} else {
-				federalTaxes += current.get(i).getTaxRate() * (householdInc - current.get(i).getStartingIncome());
+				federalTaxes += current.get(i).getTaxRate() * (taxableIncome - current.get(i).getStartingIncome());
 				break;
 			}
-			System.out.println(federalTaxes);
 		}
 		return federalTaxes;
 	}
@@ -137,15 +139,21 @@ public class taxCalc {
 	public double calcTaxes() {
 		double totalTaxes = 0.0;
 		int stateIndex = findStateIndex(this.location);
-		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(this.householdIncome, this.filingStatus) + this.calcFedTaxes(this.householdIncome, this.filingStatus);
+		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(this.householdIncome, this.contribution401k, this.contributionIRA, this.filingStatus) + this.calcFedTaxes(this.householdIncome, this.contribution401k, this.contributionIRA, this.filingStatus);
 		return totalTaxes;
 	}
 	
-	public int getHouseholdIncome() {
+	public double calcDeductions() {
+		double deductions = 0;
+//		if 
+		return deductions;
+	}
+	
+	public double getHouseholdIncome() {
 		return householdIncome;
 	}
 
-	public void setHouseholdIncome(int householdIncome) {
+	public void setHouseholdIncome(double householdIncome) {
 		this.householdIncome = householdIncome;
 	}
 
