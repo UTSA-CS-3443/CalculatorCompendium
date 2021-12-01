@@ -35,7 +35,10 @@ public class MainController {
 	
     @FXML
     private Label lblFact;
-
+    
+    @FXML
+    private Button btnSnake;
+    
 	@FXML
 	void handle(ActionEvent event) {
 
@@ -77,6 +80,19 @@ public class MainController {
 		mathFacts.loadFacts("data/mathfacts.csv");
 		String fact = mathFacts.randomFact();
 		lblFact.setText(fact);
+    }
+	
+    @FXML
+    void handleSnake(ActionEvent event) {    	
+    	try {
+
+			Parent root = FXMLLoader.load(getClass().getResource("../view/SnakeView.fxml"));
+			(Main.stage).setScene(new Scene(root, 800, 800));
+			(Main.stage).show();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
 }

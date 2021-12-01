@@ -127,17 +127,14 @@
                         <Insets left="45.0" right="45.0" />
                      </GridPane.margin>
                   </Label>
-                  <ImageView id="snake" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-                     <image>
-                        <Image url="@../../../images/snake.png" />
-                     </image>
+                  <Button id="btnsnake" fx:id="btnSnake" layoutX="260.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleSnake" prefHeight="50.0" prefWidth="50.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="20.0" />
+                     </font>
                      <GridPane.margin>
                         <Insets right="25.0" />
                      </GridPane.margin>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </ImageView>
+                  </Button>
                </children>
             </GridPane>
          </bottom>

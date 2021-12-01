@@ -58,11 +58,17 @@
                            <font>
                               <Font name="Lucida Sans Unicode" size="14.0" />
                            </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </Button>
                         <Button id="btncalculate" fx:id="btnCalculate" layoutX="255.0" layoutY="19.0" maxWidth="125.0" mnemonicParsing="false" onAction="#handleCalculate" text="Calculate" GridPane.columnIndex="3">
                            <font>
                               <Font name="Lucida Sans Unicode" size="14.0" />
                            </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </Button>
                      </children>
                      <GridPane.margin>
@@ -278,9 +284,6 @@
                <padding>
                   <Insets top="125.0" />
                </padding>
-               <effect>
-                  <DropShadow />
-               </effect>
             </GridPane>
          </center>
          <top>
