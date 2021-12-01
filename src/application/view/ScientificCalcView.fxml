@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -7,27 +9,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="800.0" maxWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ScientificController">
+<AnchorPane id="bodycalc" maxHeight="800.0" maxWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ScientificController">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
-         <top>
-            <Label fx:id="lblCalcType" text="Scientific Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Lucida Sans Unicode" size="30.0" />
-               </font>
-               <padding>
-                  <Insets top="25.0" />
-               </padding>
-            </Label>
-         </top>
          <bottom>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" text="Back" BorderPane.alignment="CENTER">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" prefHeight="45.0" prefWidth="85.0" style="-fx-background-color: #2d4989; -fx-background-radius: 10px;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets bottom="25.0" />
+                  <Insets bottom="15.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="Lucida Sans Unicode" size="15.0" />
+                  <Font name="Century Gothic Bold" size="18.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </bottom>
          <center>
@@ -37,12 +32,12 @@
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <TextField fx:id="txtInput">
@@ -286,6 +281,16 @@
                   </GridPane>
                </children>
             </GridPane>
-         </center></BorderPane>
+         </center>
+         <top>
+            <ImageView fitHeight="100.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../images/sciencecalc.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </top></BorderPane>
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -7,28 +8,22 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.collections.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TaxController">
+<AnchorPane id="bodycalc" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TaxController">
  <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
-         <top>
-            <Label fx:id="lblCalcType" text="Tax Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Lucida Sans Unicode" size="30.0" />
-               </font>
-               <padding>
-                  <Insets top="25.0" />
-               </padding>
-            </Label>
-         </top>
          <bottom>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" text="Back" BorderPane.alignment="CENTER">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" prefHeight="45.0" prefWidth="85.0" style="-fx-background-color: #2D4989; -fx-background-radius: 10px;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="25.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="Lucida Sans Unicode" size="15.0" />
+                  <Font name="Century Gothic Bold" size="18.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </bottom>
          <center>
@@ -43,23 +38,23 @@
                 <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lblResult" text="Result Displayed Here" textAlignment="CENTER" GridPane.rowIndex="3">
+                  <Label fx:id="lblResult" textAlignment="CENTER" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Lucida Sans Unicode" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Label>
                   <GridPane maxHeight="50.0" maxWidth="400.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                     <columnConstraints>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnClear" maxWidth="85.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" GridPane.columnIndex="2">
+                        <Button id="btnclear" fx:id="btnClear" maxWidth="125.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" GridPane.columnIndex="2">
                            <font>
                               <Font name="Lucida Sans Unicode" size="14.0" />
                            </font>
@@ -67,13 +62,13 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button fx:id="btnCalculate" layoutX="255.0" layoutY="19.0" maxWidth="85.0" mnemonicParsing="false" onAction="#handleCalculate" text="Calculate" GridPane.columnIndex="3">
-                           <effect>
-                              <DropShadow />
-                           </effect>
+                        <Button id="btncalculate" fx:id="btnCalculate" layoutX="255.0" layoutY="19.0" maxWidth="125.0" mnemonicParsing="false" onAction="#handleCalculate" text="Calculate" GridPane.columnIndex="3">
                            <font>
                               <Font name="Lucida Sans Unicode" size="14.0" />
                            </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </Button>
                      </children>
                      <GridPane.margin>
@@ -95,7 +90,7 @@
                      <children>
                         <Label fx:id="lbl401k" text="401(k) Contribution" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                            <padding>
                               <Insets left="10.0" />
@@ -106,7 +101,7 @@
                         </Label>
                         <Label fx:id="lblIRA" layoutX="25.0" layoutY="24.0" text="IRA Contribution" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                            <padding>
                               <Insets left="10.0" />
@@ -117,7 +112,7 @@
                         </Label>
                         <Label fx:id="lblDeductions" layoutX="211.0" layoutY="24.0" text="Itemized Deductions" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                            <padding>
                               <Insets left="10.0" />
@@ -128,7 +123,7 @@
                         </Label>
                         <Label fx:id="lblExceptions" layoutX="373.0" layoutY="24.0" text="Number of State Personal Exceptions" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                            <padding>
                               <Insets left="10.0" />
@@ -139,7 +134,7 @@
                         </Label>
                         <TextField fx:id="txt401k" maxWidth="150.0" GridPane.rowIndex="2">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                            <GridPane.margin>
                               <Insets bottom="10.0" />
@@ -147,7 +142,7 @@
                         </TextField>
                         <TextField fx:id="txtIRA" layoutX="23.0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                            <GridPane.margin>
                               <Insets bottom="10.0" />
@@ -155,7 +150,7 @@
                         </TextField>
                         <TextField fx:id="txtDeductions" layoutX="198.0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                            <GridPane.margin>
                               <Insets bottom="10.0" />
@@ -163,7 +158,7 @@
                         </TextField>
                         <TextField fx:id="txtExceptions" layoutX="373.0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                            <GridPane.margin>
                               <Insets bottom="10.0" />
@@ -187,12 +182,12 @@
                               <Insets top="20.0" />
                            </GridPane.margin>
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="16.0" />
                            </font>
                         </Label>
                         <Label fx:id="lblLocation" layoutX="30.0" layoutY="24.0" text="Location" GridPane.columnIndex="1">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets top="20.0" />
@@ -200,34 +195,106 @@
                         </Label>
                         <Label fx:id="lblFilingStatus" layoutX="230.0" layoutY="24.0" text="Filing Status" GridPane.columnIndex="2">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets top="20.0" />
                            </GridPane.margin>
                         </Label>
-                        <ComboBox fx:id="ddLocation" prefWidth="150.0" promptText="Location" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <ComboBox id="cbox_conv2" fx:id="ddLocation" prefWidth="150.0" promptText="Location" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="10.0" />
                            </GridPane.margin>
+                           <items>
+						        <FXCollections fx:factory="observableArrayList">
+						          <String fx:value="ALABAMA" />
+						          <String fx:value="ALASKA" />
+						          <String fx:value="ARIZONA" />
+						          <String fx:value="ARKANSAS" />
+						          <String fx:value="CALIFORNIA" />
+						          <String fx:value="COLORADO" />
+						          <String fx:value="CONNECTICUT" />
+						          <String fx:value="DELAWARE" />
+						          <String fx:value="FLORIDA" />
+						          <String fx:value="GEORGIA" />
+						          <String fx:value="HAWAII" />
+						          <String fx:value="IDAHO" />
+						          <String fx:value="ILLINOIS" />
+						          <String fx:value="INDIANA" />
+						          <String fx:value="IOWA" />
+						          <String fx:value="KANSAS" />
+						          <String fx:value="KENTUCKY" />
+						          <String fx:value="LOUISIANA" />
+						          <String fx:value="MAINE" />
+						          <String fx:value="MARYLAND" />
+						          <String fx:value="MASSACHUSETTS" />
+						          <String fx:value="MICHIGAN" />
+						          <String fx:value="MINNESOTA" />
+						          <String fx:value="MISSISSIPPI" />
+						          <String fx:value="MISSOURI" />
+						          <String fx:value="MONTANA" />
+						          <String fx:value="NEBRASKA" />
+						          <String fx:value="NEVADA" />
+						          <String fx:value="NEW HAMPSHIRE" />
+						          <String fx:value="NEW JERSEY" />
+						          <String fx:value="NEW MEXICO" />
+						          <String fx:value="NEW YORK" />
+						          <String fx:value="NORTH CAROLINA" />
+						          <String fx:value="NORTH DAKOTA" />
+						          <String fx:value="OHIO" />
+						          <String fx:value="OKLAHOMA" />
+						          <String fx:value="OREGON" />
+						          <String fx:value="PENNSYLVANIA" />
+						          <String fx:value="RHODE ISLAND" />
+						          <String fx:value="SOUTH CAROLINA" />
+						          <String fx:value="SOUTH DAKOTA" />
+						          <String fx:value="TENNESSEE" />
+						          <String fx:value="TEXAS" />
+						          <String fx:value="UTAH" />
+						          <String fx:value="VERMONT" />
+						          <String fx:value="VIRGINIA" />
+						          <String fx:value="WASHINGTON" />
+						          <String fx:value="WEST VIRGINIA" />
+						          <String fx:value="WISCONSIN" />
+						          <String fx:value="WYOMING" />
+						          <String fx:value="DIST. OF COLUMBIA" />
+						          
+						        </FXCollections>
+						      </items>
                         </ComboBox>
-                        <ComboBox fx:id="ddFilingStatus" layoutX="235.0" layoutY="73.0" prefWidth="150.0" promptText="Filing Status" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <ComboBox id="cbox_conv2" fx:id="ddFilingStatus" layoutX="235.0" layoutY="73.0" prefWidth="150.0" promptText="Filing Status" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="10.0" />
                            </GridPane.margin>
+					           <items>
+						        <FXCollections fx:factory="observableArrayList">
+						          <String fx:value="Single" />
+						          <String fx:value="Married" />
+						        </FXCollections>
+					      </items>
                         </ComboBox>
-                        <TextField fx:id="txtHouseholdIncome" maxWidth="150.0" promptText="Household Income" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <TextField fx:id="txtHouseholdIncome" maxWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
-                              <Font name="Lucida Sans Unicode" size="14.0" />
+                              <Font name="Century Gothic" size="14.0" />
                            </font>
                         </TextField>
                      </children>
                   </GridPane>
                </children>
                <padding>
-                  <Insets top="175.0" />
+                  <Insets top="125.0" />
                </padding>
             </GridPane>
-         </center></BorderPane>
+         </center>
+         <top>
+            <ImageView fitHeight="100.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../images/taxcalc.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets top="40.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </top></BorderPane>
    </children>
 </AnchorPane>

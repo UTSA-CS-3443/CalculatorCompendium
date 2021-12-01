@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -8,54 +10,53 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="800.0" maxWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.controller.MainController">
+<AnchorPane id="bodymain" maxHeight="800.0" maxWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
          <center>
-            <GridPane fx:id="grdMain" maxHeight="400.0" maxWidth="600.0" BorderPane.alignment="CENTER">
+            <GridPane fx:id="grdMain" alignment="CENTER" maxHeight="200.0" maxWidth="500.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <BorderPane.margin>
-                  <Insets top="25.0" />
+                  <Insets bottom="50.0" top="75.0" />
                </BorderPane.margin>
                <children>
-                  <Button fx:id="btnScientific" mnemonicParsing="false" onAction="#handle" prefWidth="140.0" text="Scientific">
+                  <Button fx:id="btnScientific" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Scientific" textFill="WHITE">
                      <font>
-                        <Font name="Lucida Sans Unicode" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button fx:id="btnConversion" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefWidth="140.0" text="Conversion" GridPane.columnIndex="1">
+                  <Button fx:id="btnConversion" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Conversion" textFill="WHITE" GridPane.columnIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
-                        <Font name="Lucida Sans Unicode" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnMatrix" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefWidth="140.0" text="Matrix" GridPane.rowIndex="1">
+                  <Button fx:id="btnMatrix" layoutX="103.0" layoutY="87.0" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Matrix" textFill="WHITE" GridPane.rowIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
-                        <Font name="Lucida Sans Unicode" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnTax" layoutX="115.0" layoutY="287.0" mnemonicParsing="false" onAction="#handle" prefWidth="140.0" text="Tax" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="btnTax" layoutX="115.0" layoutY="287.0" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #2D4989; -fx-background-radius: 15px;" text="Tax" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
-                        <Font name="Lucida Sans Unicode" size="20.0" />
+                        <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Button>
                </children>
@@ -71,26 +72,72 @@
                 <RowConstraints minHeight="10.0" prefHeight="50.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lblLogo" text="LOGO HERE" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="61.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets top="25.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Choose Your Calculator" GridPane.rowIndex="1">
+                  <Label id="h1" text="Choose Your Calculator" GridPane.rowIndex="1">
                      <font>
                         <Font name="Lucida Sans Unicode" size="27.0" />
                      </font>
+                     <padding>
+                        <Insets bottom="2.0" left="15.0" right="15.0" top="2.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets top="100.0" />
+                     </GridPane.margin>
                   </Label>
+                  <ImageView fitHeight="100.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/logoalt.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets top="40.0" />
+                     </GridPane.margin>
+                  </ImageView>
                </children>
                <padding>
                   <Insets top="25.0" />
                </padding>
             </GridPane>
          </top>
+         <bottom>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="50.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <BorderPane.margin>
+                  <Insets bottom="25.0" />
+               </BorderPane.margin>
+               <children>
+                  <Button id="btnfact" fx:id="btnFacts" mnemonicParsing="false" onAction="#handleFacts" prefHeight="45.0" prefWidth="300.0">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lblFact" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Century Gothic Bold Italic" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="45.0" right="45.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button id="btnsnake" fx:id="btnSnake" layoutX="260.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleSnake" prefHeight="50.0" prefWidth="50.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="25.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </bottom>
       </BorderPane>
-      <VBox layoutX="-319.0" layoutY="102.0" prefHeight="200.0" prefWidth="100.0" />
    </children>
 </AnchorPane>
