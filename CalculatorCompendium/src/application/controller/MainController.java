@@ -40,6 +40,11 @@ public class MainController {
     private Button btnSnake;
     
 	@FXML
+	/**
+	 * This method handles the view change for the calculators.
+	 * 
+	 * @param event, an ActionEvent
+	 */
 	void handle(ActionEvent event) {
 
 		String path = "";
@@ -75,6 +80,11 @@ public class MainController {
 	}
 	
 	@FXML
+	/**
+	 * This method handles the Random Math Fact button, displaying a random math fact from a file.
+	 * 
+	 * @param event, an ActionEvent
+	 */
     void handleFacts(ActionEvent event) {
 		Fact mathFacts = new Fact();
 		mathFacts.loadFacts("data/mathfacts.csv");
@@ -83,6 +93,11 @@ public class MainController {
     }
 	
     @FXML
+    /**
+     * This method handles loading the view for the snake game.
+     * 
+     * @param event, an ActionEvent
+     */
     void handleSnake(ActionEvent event) {    	
     	try {
 
