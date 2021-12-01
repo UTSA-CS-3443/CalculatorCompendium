@@ -30,7 +30,6 @@ public static Stage stage;
 			Scene scene = new Scene( root );
 			
 			primaryStage.setScene( scene );
-			primaryStage.setTitle("Calculator Compendium");
 			primaryStage.show();
 			
 			stage = primaryStage;

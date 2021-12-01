@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -9,20 +8,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="bodycalc" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ConversionController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ConversionController">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
+         <top>
+            <Label fx:id="lblCalcType" text="Conversion Calculator" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="30.0" />
+               </font>
+               <padding>
+                  <Insets top="25.0" />
+               </padding>
+            </Label>
+         </top>
          <bottom>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" prefHeight="45.0" prefWidth="85.0" style="-fx-background-color: #2D4989; -fx-background-radius: 10px;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBack" text="Back" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="25.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="Century Gothic Bold" size="18.0" />
+                  <Font name="Lucida Sans Unicode" size="15.0" />
                </font>
-               <effect>
-                  <DropShadow />
-               </effect>
             </Button>
          </bottom>
          <center>
@@ -54,7 +60,7 @@
                         </Label>
                         <TextField fx:id="txtConvertFrom" text="Convert From">
                            <font>
-                              <Font name="Century Gothic" size="18.0" />
+                              <Font name="Lucida Sans Unicode" size="18.0" />
                            </font>
                            <effect>
                               <DropShadow />
@@ -62,30 +68,30 @@
                         </TextField>
                         <TextField fx:id="txtConvertTo" layoutX="10.0" layoutY="55.0" text="Convert To" GridPane.columnIndex="2">
                            <font>
-                              <Font name="Century Gothic" size="18.0" />
+                              <Font name="Lucida Sans Unicode" size="18.0" />
                            </font>
                            <effect>
                               <DropShadow />
                            </effect>
                         </TextField>
-                        <ComboBox id="cbox_conv2" fx:id="ddConvertFrom" prefWidth="200.0" promptText="Unit To Convert From" GridPane.rowIndex="1">
+                        <ComboBox fx:id="ddConvertFrom" prefWidth="200.0" promptText="Unit To Convert From" GridPane.rowIndex="1">
                            <effect>
                               <DropShadow />
                            </effect>
                         </ComboBox>
-                        <ComboBox id="cbox_conv2" fx:id="ddConvertTo" layoutX="10.0" layoutY="94.0" prefWidth="200.0" promptText="Unit To Convert To" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <ComboBox fx:id="ddConvertTo" layoutX="10.0" layoutY="94.0" prefWidth="200.0" promptText="Unit To Convert To" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <effect>
                               <DropShadow />
                            </effect>
                         </ComboBox>
                      </children>
                   </GridPane>
-                  <ComboBox id="cbox_conv" fx:id="ddConversionType" onAction="#conversionType" prefWidth="350.0" promptText="Select Conversion Type" style="-fx-pref-height: 40;">
+                  <ComboBox fx:id="ddConversionType" prefWidth="350.0" promptText="Select Conversion Type">
                      <effect>
                         <DropShadow />
                      </effect>
                   </ComboBox>
-                  <Button id="btncalculate" fx:id="btnCalculate" maxWidth="125.0" mnemonicParsing="false" onAction="#handleCalculate" prefWidth="125.0" text="Calculate" textAlignment="CENTER" GridPane.rowIndex="2">
+                  <Button fx:id="btnCalculate" mnemonicParsing="false" onAction="#handleCalculate" text="Calculate" textAlignment="CENTER" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -95,16 +101,6 @@
                   </Button>
                </children>
             </GridPane>
-         </center>
-         <top>
-            <ImageView fitHeight="100.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@../../../images/convcalc.png" />
-               </image>
-               <BorderPane.margin>
-                  <Insets top="40.0" />
-               </BorderPane.margin>
-            </ImageView>
-         </top></BorderPane>
+         </center></BorderPane>
    </children>
 </AnchorPane>
