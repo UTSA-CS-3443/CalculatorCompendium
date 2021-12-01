@@ -1,6 +1,7 @@
 /**
- * @author Estela V. Rodriguez-Greenfield (wgi663)
- *
+ * SnakeController controls the Snake view and game.
+ * 
+ * @author Estela V. Rodriguez-Greenfield (wgi663) *
  */
 package application.controller;
 
@@ -45,7 +46,7 @@ public class SnakeController implements Initializable {
 	private Direction direction = Direction.RIGHT;
 	private boolean moved = false;
 	private boolean running = false;
-	private double speed = 0.125;
+	private double speed = 0.15;
 	private int score = 0;
 
 	private AudioClip gameOver;
@@ -299,14 +300,13 @@ public class SnakeController implements Initializable {
 	}
 
 	/**
-	 * This method speeds up the snake to increase game difficulty.
+	 * This method speeds up the game to increase game difficulty.
 	 */
 	private void speedUp() {
-		// TODO: Fix
-		if (speed - 0.01 > 0) {
-			speed -= 0.01;
-		}
-		System.out.println("Current Speed: " + speed);
+		double rate = timeline.getRate();
+		rate += 0.025;
+		timeline.setRate(rate);
+		//System.out.println("Timeline Rate: " + rate);
 	}
 
 	/**
@@ -326,9 +326,9 @@ public class SnakeController implements Initializable {
 	 */
 	private void startGame() {
 		// Reset game variables
-		speed = 0.15;
 		score = 0;
 		direction = Direction.RIGHT;
+		timeline.setRate(1.0);
 		
 		imgGameOver.setVisible(false);
 		gameMusic.setCycleCount(AudioClip.INDEFINITE);
