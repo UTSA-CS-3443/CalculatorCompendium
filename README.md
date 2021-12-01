@@ -42,4 +42,4 @@ Snake Game inspiration from tutorial by [Dr. Almas Baimagambetov](https://github
 
 Snake Icon from [Freepik](www.flaticon.com)
 
-Snake Game Sounds from [The Motion Monkey](https://www.themotionmonkey.co.uk/free-resources/retro-arcade-sounds/)
+Snake Game Sounds & Music from [ZapSplat](https://www.zapsplat.com)
