@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -15,6 +16,9 @@
                <font>
                   <Font name="Century Gothic" size="28.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Label>
             <ImageView fx:id="imgGameOver" fitHeight="300.0" fitWidth="800.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
                <image>

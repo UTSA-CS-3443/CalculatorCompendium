@@ -1,9 +1,11 @@
 /**
- * @author Estela V. Rodriguez-Greenfield (wgi663)
- *
+ * SnakeController controls the Snake view and game.
+ * 
+ * @author Estela V. Rodriguez-Greenfield (wgi663) *
  */
 package application.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -25,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -43,8 +46,12 @@ public class SnakeController implements Initializable {
 	private Direction direction = Direction.RIGHT;
 	private boolean moved = false;
 	private boolean running = false;
-	private double speed = 0.125;
+	private double speed = 0.15;
 	private int score = 0;
+
+	private AudioClip gameOver;
+	private AudioClip ateFood;	
+	private AudioClip gameMusic;
 
 	private String[] foodColors = { "#ff9bca", "#f2be63", "#809ce4" };
 
@@ -61,23 +68,34 @@ public class SnakeController implements Initializable {
 
 	@Override
 	/**
-	 * Initializes the view and starts the game. 
+	 * Initializes the view and starts the game.
 	 * 
-	 * @param location, an URL
+	 * @param location,  an URL
 	 * @param resources, a ResourceBundle
-	 */	
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 
+		try {
+			gameOver = new AudioClip(new File("./audio/gameover.mp3").toURI().toString());
+			ateFood = new AudioClip(new File("./audio/grow.mp3").toURI().toString());
+			gameMusic = new AudioClip(new File("./audio/gamemusic.mp3").toURI().toString());
+		} catch (Exception e) {
+			System.out.println("Error loading the file - please check its location.");
+			e.printStackTrace();
+		}
+		
 		Main.stage.setTitle("Snake Game!");
 		Main.stage.requestFocus();
+
 		updateContent();
+
 		startGame();
 
 	}
 
 	@FXML
 	/**
-	 * Handles what happens when a key is pressed. 
+	 * Handles what happens when a key is pressed.
 	 * 
 	 * @param event, a KeyEvent
 	 */
@@ -86,7 +104,7 @@ public class SnakeController implements Initializable {
 		if (!moved) {
 			return;
 		}
-		//System.out.println(event.getCode());
+		// System.out.println(event.getCode());
 		switch (event.getCode()) {
 		case UP:
 			if (direction != Direction.DOWN)
@@ -127,6 +145,7 @@ public class SnakeController implements Initializable {
 			try {
 
 				Parent root = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
+				Main.stage.setTitle("Calculator Compendium");
 				(Main.stage).setScene(new Scene(root, 800, 800));
 				(Main.stage).show();
 
@@ -221,16 +240,15 @@ public class SnakeController implements Initializable {
 				// Change color.
 				food.setFill(Color.web(randomColor()));
 
-				Rectangle body = new Rectangle(Snake.BLOCK_SIZE, Snake.BLOCK_SIZE);
-				body.setFill(Color.web(Snake.COLOR));
+				Rectangle body = newSnakePart();
 				body.setTranslateX(tailX);
 				body.setTranslateY(tailY);
-				body.setArcHeight(10.0d);
-				body.setArcWidth(10.0d);
 				snake.add(body);
-
+				
+				ateFood.play();
 				score += 5;
 				lblScore.setText("Score: " + score);
+				lblScore.toFront();
 
 				speedUp();
 
@@ -255,8 +273,17 @@ public class SnakeController implements Initializable {
 		return color;
 	}
 
+	private Rectangle newSnakePart() {
+		Rectangle part = new Rectangle(Snake.BLOCK_SIZE, Snake.BLOCK_SIZE);
+		part.setFill(Color.web(Snake.COLOR));
+		part.setArcHeight(10.0d);
+		part.setArcWidth(10.0d);
+		return part;
+	}
+
 	/**
-	 * This method creates food, assigning it a random color and position within the pane.
+	 * This method creates food, assigning it a random color and position within the
+	 * pane.
 	 * 
 	 * @return food, a Rectangle
 	 */
@@ -270,17 +297,16 @@ public class SnakeController implements Initializable {
 		food.setArcHeight(10.0d);
 		food.setArcWidth(10.0d);
 		return food;
-	}
+	} 
 
 	/**
-	 *  This method speeds up the snake to increase game difficulty.
+	 * This method speeds up the game to increase game difficulty.
 	 */
 	private void speedUp() {
-		// TODO: Fix
-		if (speed - 0.01 > 0) {
-			speed -= 0.01;
-		}
-		System.out.println("Current Speed: " + speed);
+		double rate = timeline.getRate();
+		rate += 0.025;
+		timeline.setRate(rate);
+		//System.out.println("Timeline Rate: " + rate);
 	}
 
 	/**
@@ -288,6 +314,8 @@ public class SnakeController implements Initializable {
 	 */
 	private void stopGame() {
 		running = false;
+		gameMusic.stop();
+		gameOver.play();
 		timeline.stop();
 		snake.clear();
 		imgGameOver.setVisible(true);
@@ -297,16 +325,21 @@ public class SnakeController implements Initializable {
 	 * This method initializes the game and resets components.
 	 */
 	private void startGame() {
-		imgGameOver.setVisible(false);
-		speed = 0.15;
+		// Reset game variables
 		score = 0;
-		lblScore.setText("Score: " + score);
 		direction = Direction.RIGHT;
-		Rectangle head = new Rectangle(Snake.BLOCK_SIZE, Snake.BLOCK_SIZE);
-		head.setFill(Color.web(Snake.COLOR));
-		head.setArcHeight(10.0d);
-		head.setArcWidth(10.0d);
+		timeline.setRate(1.0);
+		
+		imgGameOver.setVisible(false);
+		gameMusic.setCycleCount(AudioClip.INDEFINITE);
+		gameMusic.play();
+		
+		Rectangle head = newSnakePart();
 		snake.add(head);
+		
+		lblScore.setText("Score: " + score);
+		lblScore.toFront();
+		
 		timeline.play();
 		running = true;
 	}
