@@ -16,13 +16,29 @@ A collection of different calculators to aid in a variety of tasks and calculati
 
 The Calculator Compendium was created for convenience, or when resources we sometimes take for granted are suddenly unavailable. 
 
-## Build Status
-
-* The Scientific Calculator has not been implemented.
-
 ## Installation
 
-TODO
+1. Navigate to the main page of the repository.
+2. Above the list of files, click on "Code".
+3. Copy the link provided under HTTPS.
+4. In Eclipse, go to File > Import.
+5. Then select Git > Projects from Git.
+6. Select the "Clone URI" option.
+7. Paste the URL copied in step 3 in the URI field and click on "Next".
+8. Select the main branch only.
+9. Choose the folder where you want to store the code locally and click "Finish".
+10. Navigate to the imported "CaclulatorCompenidum" project in Eclipse.
+11. Go to src > application and right click on "Main.java" Run As > Java Application.
+12. You're done! Go make some calculations or play snake.
+
+## Build Status / Known Issues
+
+* The Scientific Calculator has not been implemented.
+* Snake Game may sometimes not pick up on Game Over input to restart or go back to the menu. 
+
+### Snake Game Instructions
+
+Move with W, A, S, D or UP, DOWN, LEFT, RIGHT arrows.
 
 ## Credits
 
