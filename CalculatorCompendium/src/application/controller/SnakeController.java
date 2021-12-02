@@ -297,7 +297,7 @@ public class SnakeController implements Initializable {
 		food.setArcHeight(10.0d);
 		food.setArcWidth(10.0d);
 		return food;
-	}
+	} 
 
 	/**
 	 * This method speeds up the game to increase game difficulty.
