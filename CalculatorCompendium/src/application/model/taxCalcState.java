@@ -1,3 +1,13 @@
+/**
+ * 
+ * TaxCalcState works closely with the TaxCalc to provide it state and local taxes based on the input provided. 
+ * It also uses {@link taxCalcBracket} in order to input and store the state tax brackets.
+ * The average local tax rate is used to calculate the local tax per state. 
+ * 
+ * @author Don Ayesh Sondapperumaarachchi
+ * 
+ */
+
 package application.model;
 
 import java.util.ArrayList;
@@ -35,6 +45,7 @@ public class taxCalcState {
 	}
 	
 	public double calcStateAndLocalTaxes(double taxableIncome, String filingStatus) {
+		if (taxableIncome < 0) { return 0.00; }
 		double localTaxes = taxableIncome * this.getAvgLocalTaxRate();
 		double stateTaxes = calcStateTaxes(taxableIncome, filingStatus);
 		return localTaxes + stateTaxes;

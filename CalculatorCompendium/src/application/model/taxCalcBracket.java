@@ -1,9 +1,13 @@
-package application.model;
+/**
+ * 
+ * TaxCalcBracket is used to store the tax rates and brackets for each state and the federal level. 
+ * 
+ * @author Don Ayesh Sondapperumaarachchi
+ * 
+ */
 
-//import java.util.Arrays;
-//import java.util.Enumeration;
-//import java.util.Hashtable;
-//import java.util.Map;
+
+package application.model;
 
 public class taxCalcBracket {
 	private double taxRate;

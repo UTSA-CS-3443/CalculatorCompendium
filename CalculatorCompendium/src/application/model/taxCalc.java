@@ -1,11 +1,18 @@
+/**
+ * TaxCalc calculates the taxes using the data entered.
+ * It works closely with the TaxCalcState to calculate state and local taxes.
+ * It also uses taxCalcBracket in order to input and store the federal tax brackets.
+ * 
+ * @author Don Ayesh Sondapperumaarachchi
+ * 
+ */
+
 package application.model;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-
 
 public class taxCalc {
 	
@@ -29,13 +36,21 @@ public class taxCalc {
 		this.setNumTaxExceptions(numExcepts);
 		this.setFilingStatus(flingStatus);
 		this.setLocation(loc);
+		this.setTaxableIncome();
+	}
+	
+	public void setTaxableIncome() {
 		this.taxableIncome = this.householdIncome - this.contribution401k - this.contributionIRA - this.deductions;
 		if (this.filingStatus.equals("Single")) {
 			this.taxableIncome -= 12400;
 		} else if (this.filingStatus.equals("Married")) {
 			this.taxableIncome -= 24800;
 		}
-
+		this.taxableIncome -= (this.numTaxExceptions *500);
+	}
+	
+	public double getTaxableIncome() {
+		return this.taxableIncome;
 	}
 	
 	public void loadFederalTaxes() {
@@ -121,12 +136,14 @@ public class taxCalc {
 	}
 	
 	public double calcFICAtaxes() {		
+		if (this.taxableIncome < 0) { return 0.00; }
 		return this.taxableIncome * 0.0765;
 	}
 
 	public double calcFedTaxes() {
 		double federalTaxes = 0.0;
-		
+		if (this.taxableIncome < 0) { return 0.00; }
+
 		ArrayList<taxCalcBracket> current = new ArrayList<taxCalcBracket>();
 		if (this.filingStatus.equals("Single")) {
 			current = this.fedTaxRatesSingle;
@@ -149,9 +166,7 @@ public class taxCalc {
 		double totalTaxes = 0.0;
 		int stateIndex = findStateIndex(this.location);
 		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(this.taxableIncome, this.filingStatus) + this.calcFedTaxes() + this.calcFICAtaxes();
-		if (totalTaxes < 0) {
-			return 0.00;
-		}
+		if (totalTaxes < 0) { return 0.00; }
 		return totalTaxes;
 	}
 	
