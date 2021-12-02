@@ -10,13 +10,13 @@ import java.util.Scanner;
 public class taxCalc {
 	
 	private double householdIncome;
-	
 	private int contribution401k;
 	private int contributionIRA;
 	private int deductions;
 	private int numTaxExceptions;
 	private String filingStatus;
 	private String location;
+	private double taxableIncome;
 	ArrayList<taxCalcState> states = new ArrayList<taxCalcState>();
 	ArrayList<taxCalcBracket> fedTaxRatesSingle = new ArrayList<taxCalcBracket>();
 	ArrayList<taxCalcBracket> fedTaxRatesMarried = new ArrayList<taxCalcBracket>();
@@ -29,7 +29,13 @@ public class taxCalc {
 		this.setNumTaxExceptions(numExcepts);
 		this.setFilingStatus(flingStatus);
 		this.setLocation(loc);
-		
+		this.taxableIncome = this.householdIncome - this.contribution401k - this.contributionIRA - this.deductions;
+		if (this.filingStatus.equals("Single")) {
+			this.taxableIncome -= 12400;
+		} else if (this.filingStatus.equals("Married")) {
+			this.taxableIncome -= 24800;
+		}
+
 	}
 	
 	public void loadFederalTaxes() {
@@ -113,23 +119,26 @@ public class taxCalc {
 		}
 		return index;
 	}
+	
+	public double calcFICAtaxes() {		
+		return this.taxableIncome * 0.0765;
+	}
 
-	public double calcFedTaxes(double householdInc, int cont401k, int contIRA, String filingStatus) {
+	public double calcFedTaxes() {
 		double federalTaxes = 0.0;
-		double taxableIncome = householdInc - cont401k - contIRA;
 		
 		ArrayList<taxCalcBracket> current = new ArrayList<taxCalcBracket>();
-		if (filingStatus.equals("Single")) {
+		if (this.filingStatus.equals("Single")) {
 			current = this.fedTaxRatesSingle;
-		} else if (filingStatus.equals("Married")) {
+		} else if (this.filingStatus.equals("Married")) {
 			current = this.fedTaxRatesMarried;
 		}
 		
 		for(int i=0; i<current.size(); i++) {
-			if(!((taxableIncome > current.get(i).getStartingIncome()) && (taxableIncome <= current.get(i).getMaxIncome()))) {
+			if(!((this.taxableIncome > current.get(i).getStartingIncome()) && (this.taxableIncome <= current.get(i).getMaxIncome()))) {
 				federalTaxes += current.get(i).getMaxTaxes();
 			} else {
-				federalTaxes += current.get(i).getTaxRate() * (taxableIncome - current.get(i).getStartingIncome());
+				federalTaxes += current.get(i).getTaxRate() * (this.taxableIncome - current.get(i).getStartingIncome());
 				break;
 			}
 		}
@@ -139,14 +148,11 @@ public class taxCalc {
 	public double calcTaxes() {
 		double totalTaxes = 0.0;
 		int stateIndex = findStateIndex(this.location);
-		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(this.householdIncome, this.contribution401k, this.contributionIRA, this.filingStatus) + this.calcFedTaxes(this.householdIncome, this.contribution401k, this.contributionIRA, this.filingStatus);
+		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(this.taxableIncome, this.filingStatus) + this.calcFedTaxes() + this.calcFICAtaxes();
+		if (totalTaxes < 0) {
+			return 0.00;
+		}
 		return totalTaxes;
-	}
-	
-	public double calcDeductions() {
-		double deductions = 0;
-//		if 
-		return deductions;
 	}
 	
 	public double getHouseholdIncome() {

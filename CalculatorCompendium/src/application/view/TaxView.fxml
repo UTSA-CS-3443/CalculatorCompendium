@@ -126,7 +126,7 @@
                               <Insets top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="txt401k" maxWidth="150.0" GridPane.rowIndex="2">
+                        <TextField fx:id="txt401k" promptText="0" maxWidth="150.0" GridPane.rowIndex="2">
                            <font>
                               <Font name="Century Gothic" size="14.0" />
                            </font>
@@ -134,7 +134,7 @@
                               <Insets bottom="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtIRA" layoutX="23.0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="txtIRA" layoutX="23.0" promptText="0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="Century Gothic" size="14.0" />
                            </font>
@@ -142,7 +142,7 @@
                               <Insets bottom="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtDeductions" layoutX="198.0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <TextField fx:id="txtDeductions" promptText="0" layoutX="198.0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="Century Gothic" size="14.0" />
                            </font>
@@ -150,7 +150,7 @@
                               <Insets bottom="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtExceptions" layoutX="373.0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <TextField fx:id="txtExceptions" promptText="0" layoutX="373.0" layoutY="69.0" maxWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font name="Century Gothic" size="14.0" />
                            </font>
@@ -267,7 +267,7 @@
 						        </FXCollections>
 					      </items>
                         </ComboBox>
-                        <TextField fx:id="txtHouseholdIncome" maxWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <TextField fx:id="txtHouseholdIncome" promptText="0" maxWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font name="Century Gothic" size="14.0" />
                            </font>

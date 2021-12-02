@@ -34,8 +34,7 @@ public class taxCalcState {
 		return this.name;
 	}
 	
-	public double calcStateAndLocalTaxes(double householdInc, int cont401k, int contIRA,String filingStatus) {
-		double taxableIncome = householdInc - cont401k - contIRA;
+	public double calcStateAndLocalTaxes(double taxableIncome, String filingStatus) {
 		double localTaxes = taxableIncome * this.getAvgLocalTaxRate();
 		double stateTaxes = calcStateTaxes(taxableIncome, filingStatus);
 		return localTaxes + stateTaxes;
