@@ -1,34 +1,64 @@
 package application.model;
 
+/**
+ * matrixSubtract will subtract one matrix by another
+ * 
+ * @author Brandon Stevenson (dvi673) UTSA CS 3443 - Program Fall 2021
+ */
 public class matrixSubtract {
-    //Variables
-    private int[][] resultMatrix;
-    //Constructor
-    public matrixSubtract(){
-        resultMatrix = new int[3][3];
-    }
-    public void subtractMatrix(int[][] matrixA, int[][] matrixB){
-        for(int i = 0; i < matrixA.length; i++)
-            for(int j = 0; j < matrixB.length; j++){
-                resultMatrix[i][j] = matrixA[i][j] - matrixB[i][j];
-            }
-    }
-    public String toString(){
-        String result = "";
-        for (int[] matrix : resultMatrix) {
-            result = result.concat("[ ");
-            for (int j = 0; j < resultMatrix.length; j++) {
-                result = result.concat(matrix[j] + " ");
-            }
-            result = result.concat("]\n");
-        }
-        return result;
-    }
-    public int[][] getResultMatrix() {
-        return resultMatrix;
-    }
+	private int[][] resultMatrix;
 
-    public void setResultMatrix(int[][] resultMatrix) {
-        this.resultMatrix = resultMatrix;
-    }
+	/**
+	 * Constructor for the class, initializes matrix of integers
+	 */
+	public matrixSubtract() {
+		resultMatrix = new int[3][3];
+	}
+
+	/**
+	 * method for subtracting one matrix by another.
+	 *
+	 * @param matrixA, matrixB, an int[][]
+	 */
+	public void subtractMatrix(int[][] matrixA, int[][] matrixB) {
+		for (int i = 0; i < matrixA.length; i++)
+			for (int j = 0; j < matrixB.length; j++) {
+				resultMatrix[i][j] = matrixA[i][j] - matrixB[i][j];
+			}
+	}
+
+	/**
+	 * method for how the result matrix will print
+	 *
+	 * @return result, a String
+	 */
+	public String toString() {
+		String result = "";
+		for (int[] matrix : resultMatrix) {
+			result = result.concat("[ ");
+			for (int j = 0; j < resultMatrix.length; j++) {
+				result = result.concat(matrix[j] + " ");
+			}
+			result = result.concat("]\n");
+		}
+		return result;
+	}
+
+	/**
+	 * Getter method for the result matrix.
+	 *
+	 * @return resultMatrix, an int[][]
+	 */
+	public int[][] getResultMatrix() {
+		return resultMatrix;
+	}
+
+	/**
+	 * Setter method for the result matrix.
+	 *
+	 * @param resultMatrix, an int[][]
+	 */
+	public void setResultMatrix(int[][] resultMatrix) {
+		this.resultMatrix = resultMatrix;
+	}
 }

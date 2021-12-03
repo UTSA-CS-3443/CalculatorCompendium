@@ -1,27 +1,68 @@
 package application.model;
 
+/**
+ * matrixDataHandler would determine the new size of the array if size of result
+ * array were to change.
+ * 
+ * @author Brandon Stevenson (dvi673) UTSA CS 3443 - Program Fall 2021
+ */
 public class matrixDataHandler {
-    //Global variables
-    private int[][] matrixA, matrixB;
-    private int rowA, rowB, columnA, columnB;
-    //Constructor
-    public matrixDataHandler(){
+	private int[][] matrixA, matrixB;
+	/**
+	 * Constructor for the class, initializes matrix of integers
+	 */
+	public matrixDataHandler() {
+	}
 
-    }
+	/**
+	 * method for finding the rows of new matrix size.
+	 *
+	 * @param matrixA, a String[][]
+	 */
+	public void findRows(String[][] matrixA) {
+	}
 
-    /*
-    - This function will take in a matrix created in the matrixController upon user button press.
-    - This function will determine if the matrix is regular or irregular.
-    - If the matrix is irregular then the function will return an error that will be printed into the result area.
-      //UPDATE
-      - The functions will use integers. These ints will return the size, they will also return different values that
-      - will tell the user if the matrix is irregular or if it is invalid.
-     */
-    public int findRows(int[][] matrix){
-        return 0;
-    }
+	/**
+	 * method for finding the columns of new matrix size.
+	 *
+	 * @param matrixA, a String[][]
+	 */
+	public void findColumns(String[][] matrixA) {
+	}
 
-    public int findColumns(int[][] matrix){
-        return 0;
-    }
+	/**
+	 * Getter method for the matrix.
+	 *
+	 * @return matrixA, an int[][]
+	 */
+	public int[][] getMatrixA() {
+		return matrixA;
+	}
+
+	/**
+	 * Setter method for the matrixA.
+	 *
+	 * @param matrixA, an ArrayList<String>
+	 */
+	public void setMatrixA(int[][] matrixA) {
+		this.matrixA = matrixA;
+	}
+
+	/**
+	 * Getter method for the matrix.
+	 *
+	 * @return matrixB, an int[][]
+	 */
+	public int[][] getMatrixB() {
+		return matrixB;
+	}
+
+	/**
+	 * Setter method for the matrixB.
+	 *
+	 * @param matrixB, an ArrayList<String>
+	 */
+	public void setMatrixB(int[][] matrixB) {
+		this.matrixB = matrixB;
+	}
 }
