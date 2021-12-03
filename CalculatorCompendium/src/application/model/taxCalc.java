@@ -1,3 +1,12 @@
+/**
+ * TaxCalc calculates the taxes using the data entered.
+ * It works closely with the TaxCalcState to calculate state and local taxes.
+ * It also uses taxCalcBracket in order to input and store the federal tax brackets.
+ * 
+ * @author Don Ayesh Sondapperumaarachchi
+ * 
+ */
+
 package application.model;
 
 import java.io.File;
@@ -5,21 +14,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class taxCalc {
 	
-	private int householdIncome;
+	private double householdIncome;
 	private int contribution401k;
 	private int contributionIRA;
 	private int deductions;
 	private int numTaxExceptions;
 	private String filingStatus;
 	private String location;
+	private double taxableIncome;
 	ArrayList<taxCalcState> states = new ArrayList<taxCalcState>();
 	ArrayList<taxCalcBracket> fedTaxRatesSingle = new ArrayList<taxCalcBracket>();
 	ArrayList<taxCalcBracket> fedTaxRatesMarried = new ArrayList<taxCalcBracket>();
 
-	public taxCalc(int hshldIncome, int cont401k, int contIRA, int ded, int numExcepts, String flingStatus, String loc) {
+	public taxCalc(double hshldIncome, int cont401k, int contIRA, int ded, int numExcepts, String flingStatus, String loc) {
 		this.setHouseholdIncome(hshldIncome);
 		this.setContribution401k(cont401k);
 		this.setContributionIRA(contIRA);
@@ -27,7 +36,21 @@ public class taxCalc {
 		this.setNumTaxExceptions(numExcepts);
 		this.setFilingStatus(flingStatus);
 		this.setLocation(loc);
-		
+		this.setTaxableIncome();
+	}
+	
+	public void setTaxableIncome() {
+		this.taxableIncome = this.householdIncome - this.contribution401k - this.contributionIRA - this.deductions;
+		if (this.filingStatus.equals("Single")) {
+			this.taxableIncome -= 12400;
+		} else if (this.filingStatus.equals("Married")) {
+			this.taxableIncome -= 24800;
+		}
+		this.taxableIncome -= (this.numTaxExceptions *500);
+	}
+	
+	public double getTaxableIncome() {
+		return this.taxableIncome;
 	}
 	
 	public void loadFederalTaxes() {
@@ -111,25 +134,30 @@ public class taxCalc {
 		}
 		return index;
 	}
+	
+	public double calcFICAtaxes() {		
+		if (this.taxableIncome < 0) { return 0.00; }
+		return this.taxableIncome * 0.0765;
+	}
 
-	public double calcFedTaxes(int householdInc, String filingStatus) {
+	public double calcFedTaxes() {
 		double federalTaxes = 0.0;
-		
+		if (this.taxableIncome < 0) { return 0.00; }
+
 		ArrayList<taxCalcBracket> current = new ArrayList<taxCalcBracket>();
-		if (filingStatus.equals("Single")) {
+		if (this.filingStatus.equals("Single")) {
 			current = this.fedTaxRatesSingle;
-		} else if (filingStatus.equals("Married")) {
+		} else if (this.filingStatus.equals("Married")) {
 			current = this.fedTaxRatesMarried;
 		}
 		
 		for(int i=0; i<current.size(); i++) {
-			if(!((householdInc > current.get(i).getStartingIncome()) && (householdInc <= current.get(i).getMaxIncome()))) {
+			if(!((this.taxableIncome > current.get(i).getStartingIncome()) && (this.taxableIncome <= current.get(i).getMaxIncome()))) {
 				federalTaxes += current.get(i).getMaxTaxes();
 			} else {
-				federalTaxes += current.get(i).getTaxRate() * (householdInc - current.get(i).getStartingIncome());
+				federalTaxes += current.get(i).getTaxRate() * (this.taxableIncome - current.get(i).getStartingIncome());
 				break;
 			}
-			System.out.println(federalTaxes);
 		}
 		return federalTaxes;
 	}
@@ -137,15 +165,16 @@ public class taxCalc {
 	public double calcTaxes() {
 		double totalTaxes = 0.0;
 		int stateIndex = findStateIndex(this.location);
-		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(this.householdIncome, this.filingStatus) + this.calcFedTaxes(this.householdIncome, this.filingStatus);
+		totalTaxes = this.states.get(stateIndex).calcStateAndLocalTaxes(this.taxableIncome, this.filingStatus) + this.calcFedTaxes() + this.calcFICAtaxes();
+		if (totalTaxes < 0) { return 0.00; }
 		return totalTaxes;
 	}
 	
-	public int getHouseholdIncome() {
+	public double getHouseholdIncome() {
 		return householdIncome;
 	}
 
-	public void setHouseholdIncome(int householdIncome) {
+	public void setHouseholdIncome(double householdIncome) {
 		this.householdIncome = householdIncome;
 	}
 

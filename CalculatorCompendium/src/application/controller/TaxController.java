@@ -2,6 +2,8 @@
  * TaxController controls the Tax Calculator view.
  * 
  * @author Estela V. Rodriguez-Greenfield (wgi663)
+ * @author Don Ayesh Sondapperumaarachchi
+ * 
  */
 
 package application.controller;
@@ -17,8 +19,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import java.text.DecimalFormat;
 
 public class TaxController {
+	
+	private static final DecimalFormat df = new DecimalFormat("#.00");
 
 	@FXML
 	private ComboBox<String> ddLocation;
@@ -55,19 +60,20 @@ public class TaxController {
 	
 	@FXML
 	void handleClear(ActionEvent event) {
-		txtHouseholdIncome.clear();
-		txt401k.clear();
-		txtIRA.clear();
-		txtDeductions.clear();
-		txtExceptions.clear();
-		ddLocation.setValue(null);
-		ddFilingStatus.setValue(null);
+		txtHouseholdIncome.setText("0");
+		txt401k.setText("0");
+		txtIRA.setText("0");
+		txtDeductions.setText("0");
+		txtExceptions.setText("0");
+		ddLocation.setValue("TEXAS");
+		ddFilingStatus.setValue("Single");
 		lblResult.setText(null);
 	}
 
 	@FXML
 	void handleCalculate(ActionEvent event) {
 		
+		if (txt401k.getText() == "") {txt401k.setText("0");}
 		int householdIncome = Integer.parseInt(txtHouseholdIncome.getText());
 		int cont401k = Integer.parseInt(txt401k.getText());
 		int contIRA = Integer.parseInt(txtIRA.getText());
@@ -82,7 +88,7 @@ public class TaxController {
 		evnt.loadTaxRates("data/stateTaxRatesMarried.csv", "Married");
 		evnt.loadTaxRates("data/stateTaxRatesSingle.csv", "Single");
 		evnt.loadLocalTaxes("data/avgLocalTaxRateByState.csv");
-		lblResult.setText("Income Tax To Be Paid: $" + evnt.calcTaxes());
+		lblResult.setText("Income Tax To Be Paid: $" + df.format(evnt.calcTaxes()));
 	}
 
 	@FXML
